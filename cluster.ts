@@ -34,7 +34,7 @@ export class Cluster extends Construct {
       vpc: props.vpc,
       mastersRole: this.mainRole,
       clusterName: props.clusterName ?? "Cluster",
-      version: eks.KubernetesVersion.V1_21,
+      version: eks.KubernetesVersion.of("1.22"),
       defaultCapacityInstance: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
     });
 

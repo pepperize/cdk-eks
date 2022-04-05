@@ -3,7 +3,7 @@ import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
-import { AwsLoadBalancerController } from "./aws-load-balancer-controller";
+import * as albIamPolicy from "./alb-iam_policy-v2.4.1.json";
 import { ExternalDns } from "./external-dns";
 
 export interface BaseClusterProps {
@@ -20,7 +20,7 @@ export class Cluster extends Construct {
   public readonly mainRole: iam.IRole;
   public readonly cluster: eks.ICluster;
   public readonly autoscaling: Karpenter;
-  public readonly loadBalancer: AwsLoadBalancerController;
+  public readonly albController: eks.AlbController;
   public readonly externalDns: ExternalDns;
 
   public constructor(scope: Construct, id: string, props: ClusterProps) {
@@ -51,9 +51,10 @@ export class Cluster extends Construct {
     });
 
     // load balancing
-    this.loadBalancer = new AwsLoadBalancerController(this, "AwsLoadBalancerController", {
-      cluster: this.cluster,
-      vpcId: props.vpc.vpcId,
+    this.albController = new eks.AlbController(this, "AwsLoadBalancerController", {
+      cluster: this.cluster as eks.Cluster,
+      version: eks.AlbControllerVersion.of("v2.4.1"),
+      policy: albIamPolicy,
     });
 
     // domain name

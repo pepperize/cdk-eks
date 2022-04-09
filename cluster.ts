@@ -5,6 +5,7 @@ import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
 import * as albIamPolicy from "./alb-iam_policy-v2.4.1.json";
 import { ExternalDns } from "./external-dns";
+import { ExternalSecrets } from "./external-secrets";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -22,6 +23,7 @@ export class Cluster extends Construct {
   public readonly autoscaling: Karpenter;
   public readonly albController: eks.AlbController;
   public readonly externalDns: ExternalDns;
+  public readonly externalSecrets: ExternalSecrets;
 
   public constructor(scope: Construct, id: string, props: ClusterProps) {
     super(scope, id);
@@ -61,6 +63,11 @@ export class Cluster extends Construct {
     this.externalDns = new ExternalDns(this, "ExternalDns", {
       cluster: this.cluster,
       hostedZoneId: props.hostedZoneId,
+    });
+
+    // secrets
+    this.externalSecrets = new ExternalSecrets(this, "ExternalSecrets", {
+      cluster: this.cluster,
     });
   }
 }

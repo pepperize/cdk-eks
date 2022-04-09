@@ -20,7 +20,7 @@ export class ExternalDns extends Construct {
     this.cluster = props.cluster;
     const namespace = props.namespace ?? "dns";
 
-    const externalsDnsNamespaceManifest = new eks.KubernetesManifest(this, "DnsNamespace", {
+    const externalsDnsNamespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
       cluster: this.cluster,
       manifest: [
         {
@@ -34,7 +34,7 @@ export class ExternalDns extends Construct {
     });
 
     // https://artifacthub.io/packages/helm/bitnami/external-dns
-    const externalDnsServiceAccount = this.cluster.addServiceAccount("ExternalDnsServiceAccount", {
+    const externalDnsServiceAccount = this.cluster.addServiceAccount("ServiceAccount", {
       name: "external-dns",
       namespace: namespace,
     });

@@ -22,7 +22,7 @@ export class ExternalSecrets extends Construct {
     this.cluster = props.cluster;
     const namespace = props.namespace ?? "secrets";
 
-    // Create the namespace
+    // https://external-secrets.io/v0.5.1/provider-aws-secrets-manager/#aws-authentication
     const externalSecretsNamespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
       cluster: this.cluster,
       manifest: [

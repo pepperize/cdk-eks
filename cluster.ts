@@ -5,6 +5,7 @@ import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
+import { FluentBit } from "./fluent-bit";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -23,6 +24,7 @@ export class Cluster extends Construct {
   public readonly albController: eks.AlbController;
   public readonly externalDns: ExternalDns;
   public readonly externalSecrets: ExternalSecrets;
+  public readonly logging: FluentBit;
 
   public constructor(scope: Construct, id: string, props: ClusterProps) {
     super(scope, id);
@@ -44,7 +46,7 @@ export class Cluster extends Construct {
       awsAuth.addMastersRole(role);
     }
 
-    // auto scale
+    // autoscaling
     // https://artifacthub.io/packages/helm/karpenter/karpenter
     this.autoscaling = new Karpenter(this, "Karpenter", {
       cluster: this.cluster as eks.Cluster,
@@ -54,8 +56,7 @@ export class Cluster extends Construct {
     // load balancing
     this.albController = new eks.AlbController(this, "AwsLoadBalancerController", {
       cluster: this.cluster as eks.Cluster,
-      version: eks.AlbControllerVersion.of("v2.4.1"),
-      policy: albIamPolicy,
+      version: eks.AlbControllerVersion.V2_4_1,
     });
 
     // domain name
@@ -66,6 +67,11 @@ export class Cluster extends Construct {
 
     // secrets
     this.externalSecrets = new ExternalSecrets(this, "ExternalSecrets", {
+      cluster: this.cluster,
+    });
+
+    // logging
+    this.logging = new FluentBit(this, "FluentBit", {
       cluster: this.cluster,
     });
   }

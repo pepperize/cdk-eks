@@ -20,7 +20,7 @@ export class FluentBit extends Construct {
     this.cluster = props.cluster;
     const namespace = props.namespace ?? "logging";
 
-    const namespaceManifest = new eks.KubernetesManifest(this, "LoggingNamespace", {
+    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
       cluster: this.cluster,
       manifest: [
         {

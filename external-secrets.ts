@@ -59,7 +59,7 @@ export class ExternalSecrets extends Construct {
     // https://artifacthub.io/packages/helm/external-secrets-operator/external-secrets
     const chart = new eks.HelmChart(this, "Chart", {
       cluster: this.cluster,
-      repository: "https://external-secrets.github.io/kubernetes-external-secrets",
+      repository: "https://charts.external-secrets.io",
       chart: "external-secrets",
       release: "external-secrets",
       namespace,

@@ -6,6 +6,7 @@ import { Construct } from "constructs";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
+import { CloudwatchMetrics } from "./cloudwatch-metrics";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -25,6 +26,7 @@ export class Cluster extends Construct {
   public readonly externalDns: ExternalDns;
   public readonly externalSecrets: ExternalSecrets;
   public readonly logging: FluentBit;
+  public readonly metrics: CloudwatchMetrics;
 
   public constructor(scope: Construct, id: string, props: ClusterProps) {
     super(scope, id);
@@ -72,6 +74,11 @@ export class Cluster extends Construct {
 
     // logging
     this.logging = new FluentBit(this, "FluentBit", {
+      cluster: this.cluster,
+    });
+
+    // metrics
+    this.metrics = new CloudwatchMetrics(this, "CloudwatchMetrics", {
       cluster: this.cluster,
     });
   }

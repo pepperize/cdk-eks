@@ -3,7 +3,6 @@ import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
-import * as albIamPolicy from "./alb-iam_policy-v2.4.1.json";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 
@@ -36,7 +35,7 @@ export class Cluster extends Construct {
       vpc: props.vpc,
       mastersRole: this.mainRole,
       clusterName: props.clusterName ?? "Cluster",
-      version: eks.KubernetesVersion.of("1.22"),
+      version: eks.KubernetesVersion.V1_22,
       defaultCapacityInstance: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
     });
 

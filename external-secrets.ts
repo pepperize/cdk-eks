@@ -23,7 +23,7 @@ export class ExternalSecrets extends Construct {
     const namespace = props.namespace ?? "secrets";
 
     // https://external-secrets.io/v0.5.1/provider-aws-secrets-manager/#aws-authentication
-    const externalSecretsNamespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
+    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
       cluster: this.cluster,
       manifest: [
         {
@@ -36,12 +36,12 @@ export class ExternalSecrets extends Construct {
       ],
     });
 
-    const externalSecretsServiceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
+    const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: this.cluster,
       name: "external-secrets",
       namespace,
     });
-    externalSecretsServiceAccount.addToPrincipalPolicy(
+    serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         actions: [
@@ -54,10 +54,11 @@ export class ExternalSecrets extends Construct {
         resources: ["*"],
       })
     );
-    externalSecretsServiceAccount.node.addDependency(externalSecretsNamespaceManifest);
+    serviceAccount.node.addDependency(namespaceManifest);
 
-    // https://github.com/external-secrets/external-secrets
-    const externalSecretsChart = this.cluster.addHelmChart("ExternalSecret", {
+    // https://artifacthub.io/packages/helm/external-secrets-operator/external-secrets
+    const chart = new eks.HelmChart(this, "Chart", {
+      cluster: this.cluster,
       repository: "https://external-secrets.github.io/kubernetes-external-secrets",
       chart: "external-secrets",
       release: "external-secrets",
@@ -66,10 +67,10 @@ export class ExternalSecrets extends Construct {
       values: {
         serviceAccount: {
           create: false,
-          name: externalSecretsServiceAccount.serviceAccountName,
+          name: serviceAccount.serviceAccountName,
         },
       },
     });
-    externalSecretsChart.node.addDependency(externalSecretsServiceAccount, externalSecretsNamespaceManifest);
+    chart.node.addDependency(serviceAccount, namespaceManifest);
   }
 }

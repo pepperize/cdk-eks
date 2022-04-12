@@ -20,7 +20,7 @@ export class ExternalDns extends Construct {
     this.cluster = props.cluster;
     const namespace = props.namespace ?? "dns";
 
-    const externalsDnsNamespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
+    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
       cluster: this.cluster,
       manifest: [
         {
@@ -34,25 +34,27 @@ export class ExternalDns extends Construct {
     });
 
     // https://artifacthub.io/packages/helm/bitnami/external-dns
-    const externalDnsServiceAccount = this.cluster.addServiceAccount("ServiceAccount", {
+    const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
+      cluster: this.cluster,
       name: "external-dns",
       namespace: namespace,
     });
-    externalDnsServiceAccount.addToPrincipalPolicy(
+    serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         actions: ["route53:ChangeResourceRecordSets", "route53:ListResourceRecordSets"],
         resources: [`arn:aws:route53:::hostedzone/${props.hostedZoneId}`],
       })
     );
-    externalDnsServiceAccount.addToPrincipalPolicy(
+    serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         actions: ["route53:ListHostedZones"],
         resources: ["*"],
       })
     );
-    externalDnsServiceAccount.node.addDependency(externalsDnsNamespaceManifest);
+    serviceAccount.node.addDependency(namespaceManifest);
 
-    const externalDnsChart = this.cluster.addHelmChart("ExternalDns", {
+    const chart = new eks.HelmChart(this, "Chart", {
+      cluster: this.cluster,
       repository: "https://charts.bitnami.com/bitnami",
       chart: "external-dns",
       release: "external-dns",
@@ -62,10 +64,10 @@ export class ExternalDns extends Construct {
         zoneIdFilters: [props.hostedZoneId],
         serviceAccount: {
           create: false,
-          name: externalDnsServiceAccount.serviceAccountName,
+          name: serviceAccount.serviceAccountName,
         },
       },
     });
-    externalDnsChart.node.addDependency(externalDnsServiceAccount, externalsDnsNamespaceManifest);
+    chart.node.addDependency(serviceAccount, namespaceManifest);
   }
 }

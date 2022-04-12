@@ -1,12 +1,13 @@
+import { ITaggable, TagManager, TagType } from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
+import { CloudwatchMetrics } from "./cloudwatch-metrics";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
-import { CloudwatchMetrics } from "./cloudwatch-metrics";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -18,7 +19,9 @@ export interface ClusterProps extends BaseClusterProps {
   readonly mainRoles: iam.IRole[];
 }
 
-export class Cluster extends Construct {
+export class Cluster extends Construct implements ITaggable {
+  public readonly tags = new TagManager(TagType.MAP, "AWS::EKS::Cluster");
+
   public readonly mainRole: iam.IRole;
   public readonly cluster: eks.ICluster;
   public readonly autoscaling: Karpenter;
@@ -41,6 +44,7 @@ export class Cluster extends Construct {
       clusterName: props.clusterName ?? "Cluster",
       version: eks.KubernetesVersion.V1_22,
       defaultCapacityInstance: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
+      tags: this.tags.renderedTags as unknown as { [key: string]: string },
     });
 
     const awsAuth = (this.cluster as eks.Cluster).awsAuth;

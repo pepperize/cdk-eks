@@ -36,7 +36,7 @@ export class ExternalDns extends Construct {
     // https://artifacthub.io/packages/helm/bitnami/external-dns
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: this.cluster,
-      name: "external-dns",
+      name: "external-dns-sa",
       namespace: namespace,
     });
     serviceAccount.addToPrincipalPolicy(

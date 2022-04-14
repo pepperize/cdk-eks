@@ -92,8 +92,8 @@ export class EfsCsiDriver extends Construct {
     const namespace = props.namespace ?? "kube-system";
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
-      namespace,
-      name: "efs-csi-driver",
+      namespace: namespace,
+      name: "efs-csi-driver-sa",
       cluster: this.cluster,
     });
 

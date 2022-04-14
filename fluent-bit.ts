@@ -35,7 +35,7 @@ export class FluentBit extends Construct {
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: this.cluster,
-      name: "fluent-bit",
+      name: "fluent-bit-sa",
       namespace: namespace,
     });
 

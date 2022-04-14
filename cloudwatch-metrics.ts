@@ -17,7 +17,7 @@ export class CloudwatchMetrics extends Construct {
     super(scope, id);
 
     this.cluster = props.cluster;
-    const namespace = props.namespace ?? "cloudwatch-metrics";
+    const namespace = props.namespace ?? "metrics";
 
     const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
       cluster: this.cluster,
@@ -34,7 +34,7 @@ export class CloudwatchMetrics extends Construct {
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: this.cluster,
-      name: "cloudwatch-metrics",
+      name: "metrics-sa",
       namespace: namespace,
     });
 

@@ -38,7 +38,7 @@ export class ExternalSecrets extends Construct {
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: this.cluster,
-      name: "external-secrets",
+      name: "external-secrets-sa",
       namespace,
     });
     serviceAccount.addToPrincipalPolicy(
@@ -62,7 +62,7 @@ export class ExternalSecrets extends Construct {
       repository: "https://charts.external-secrets.io",
       chart: "external-secrets",
       release: "external-secrets",
-      namespace,
+      namespace: namespace,
       version: "0.5.1",
       values: {
         serviceAccount: {

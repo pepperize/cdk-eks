@@ -9,6 +9,7 @@ import { EfsCsiDriver } from "./efs-csi-driver";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
+import { EbsCsiDriver } from "./ebs-csi-driver";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -89,6 +90,9 @@ export class Cluster extends Construct implements ITaggable {
 
     // filesystem
     new EfsCsiDriver(this, "EfsCsiDriver", {
+      cluster: this.cluster,
+    });
+    new EbsCsiDriver(this, "EbsCsiDriver", {
       cluster: this.cluster,
     });
   }

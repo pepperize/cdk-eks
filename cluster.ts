@@ -5,11 +5,12 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
 import { CloudwatchMetrics } from "./cloudwatch-metrics";
+import { EbsCsiDriver } from "./ebs-csi-driver";
 import { EfsCsiDriver } from "./efs-csi-driver";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
-import { EbsCsiDriver } from "./ebs-csi-driver";
+import { VpcCni } from "./vpc-cni";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -53,6 +54,11 @@ export class Cluster extends Construct implements ITaggable {
     for (const role of props.mainRoles) {
       awsAuth.addMastersRole(role);
     }
+
+    // networking
+    new VpcCni(this, "VpcCni", {
+      cluster: this.cluster,
+    });
 
     // autoscaling
     // https://artifacthub.io/packages/helm/karpenter/karpenter

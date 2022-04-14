@@ -4,11 +4,16 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 import { Addon, AddonVersion } from "./addon";
 
-export class EbsCsiDriverVersion implements AddonVersion {
+export class VpcCniVersion implements AddonVersion {
   /**
-   * v1.5.2
+   * v1.10.1
    */
-  public static readonly V1_5_2 = new EbsCsiDriverVersion("v1.5.2-eksbuild.1", false);
+  public static readonly V1_10_1 = new VpcCniVersion("v1.10.1-eksbuild.1", false);
+
+  /**
+   * v1.10.2
+   */
+  public static readonly V1_10_2 = new VpcCniVersion("v1.10.2-eksbuild.1", false);
 
   /**
    * Specify a custom version.
@@ -17,7 +22,7 @@ export class EbsCsiDriverVersion implements AddonVersion {
    * @param version The version number.
    */
   public static of(version: string) {
-    return new EbsCsiDriverVersion(version, true);
+    return new VpcCniVersion(version, true);
   }
 
   private constructor(
@@ -33,13 +38,13 @@ export class EbsCsiDriverVersion implements AddonVersion {
   ) {}
 }
 
-export interface EbsCsiDriverProps {
+export interface VpcCniProps {
   readonly cluster: eks.ICluster;
 
   /**
-   * @default v1.5.2
+   * @default v1.10.2
    */
-  readonly version?: EbsCsiDriverVersion;
+  readonly version?: VpcCniVersion;
 
   /**
    * @default kube-system
@@ -50,31 +55,31 @@ export interface EbsCsiDriverProps {
 /**
  * https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
  */
-export class EbsCsiDriver extends Addon {
+export class VpcCni extends Addon {
   /**
    * Create the driver construct associated with this cluster and scope.
    *
    * Singleton per stack/cluster.
    */
-  public static create(scope: Construct, props: EbsCsiDriverProps) {
+  public static create(scope: Construct, props: VpcCniProps) {
     const stack = Stack.of(scope);
-    const uid = EbsCsiDriver.uid(props.cluster);
-    return new EbsCsiDriver(stack, uid, props);
+    const uid = VpcCni.uid(props.cluster);
+    return new VpcCni(stack, uid, props);
   }
 
   private static uid(cluster: eks.ICluster) {
-    return `${Names.nodeUniqueId(cluster.node)}-EbsCsiDriver`;
+    return `${Names.nodeUniqueId(cluster.node)}-VpcCni`;
   }
 
-  public constructor(scope: Construct, id: string, props: EbsCsiDriverProps) {
-    const managedPolicy = iam.ManagedPolicy.fromAwsManagedPolicyName("service-role/AmazonEBSCSIDriverPolicy");
+  public constructor(scope: Construct, id: string, props: VpcCniProps) {
+    const managedPolicy = iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonEKS_CNI_Policy");
 
     super(scope, id, {
       ...props,
       managedPolicy: managedPolicy,
-      addonName: "aws-ebs-csi-driver",
-      serviceAccountName: "ebs-csi-controller-sa",
-      version: props.version ?? EbsCsiDriverVersion.V1_5_2,
+      addonName: "vpc-cni",
+      serviceAccountName: "aws-node",
+      version: props.version ?? VpcCniVersion.V1_10_2,
     });
   }
 }

@@ -48,7 +48,7 @@ export class Addon extends Construct {
           StringEquals: new CfnJson(this, "Condition", {
             value: {
               [`oidc.eks.${region}.amazonaws.com/id/${issuer}:aud`]: "sts.amazonaws.com",
-              [`oidc.eks.${region}.amazonaws.com/id/${issuer}:sub`]: `system:serviceaccount:${namespace}:`,
+              [`oidc.eks.${region}.amazonaws.com/id/${issuer}:sub`]: `system:serviceaccount:${namespace}:${props.serviceAccountName}`,
             },
           }),
         },

@@ -5,6 +5,7 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
 import { CloudwatchMetrics } from "./cloudwatch-metrics";
+import { EfsCsiDriver } from "./efs-csi-driver";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
@@ -83,6 +84,11 @@ export class Cluster extends Construct implements ITaggable {
 
     // metrics
     this.metrics = new CloudwatchMetrics(this, "CloudwatchMetrics", {
+      cluster: this.cluster,
+    });
+
+    // filesystem
+    new EfsCsiDriver(this, "EfsCsiDriver", {
       cluster: this.cluster,
     });
   }

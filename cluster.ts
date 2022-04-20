@@ -10,7 +10,6 @@ import { EfsCsiDriver } from "./efs-csi-driver";
 import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
-import { VpcCni } from "./vpc-cni";
 
 export interface BaseClusterProps {
   readonly clusterName?: string;
@@ -26,7 +25,7 @@ export class Cluster extends Construct implements ITaggable {
   public readonly tags = new TagManager(TagType.MAP, "AWS::EKS::Cluster");
 
   public readonly mainRole: iam.IRole;
-  public readonly cluster: eks.ICluster;
+  public readonly cluster: eks.Cluster;
   public readonly autoscaling: Karpenter;
   public readonly albController: eks.AlbController;
   public readonly externalDns: ExternalDns;
@@ -50,15 +49,10 @@ export class Cluster extends Construct implements ITaggable {
       tags: this.tags.renderedTags as unknown as { [key: string]: string },
     });
 
-    const awsAuth = (this.cluster as eks.Cluster).awsAuth;
+    const awsAuth = this.cluster.awsAuth;
     for (const role of props.mainRoles) {
       awsAuth.addMastersRole(role);
     }
-
-    // networking
-    new VpcCni(this, "VpcCni", {
-      cluster: this.cluster,
-    });
 
     // autoscaling
     // https://artifacthub.io/packages/helm/karpenter/karpenter
@@ -98,6 +92,7 @@ export class Cluster extends Construct implements ITaggable {
     new EfsCsiDriver(this, "EfsCsiDriver", {
       cluster: this.cluster,
     });
+
     new EbsCsiDriver(this, "EbsCsiDriver", {
       cluster: this.cluster,
     });

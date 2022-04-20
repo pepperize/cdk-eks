@@ -10,6 +10,11 @@ export interface CloudwatchMetricsProps {
   readonly namespace?: string;
 }
 
+/**
+ * Set up Container Insights to collect cluster metrics
+ *
+ * @see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-setup-metrics.html
+ */
 export class CloudwatchMetrics extends Construct {
   readonly cluster: eks.ICluster;
 

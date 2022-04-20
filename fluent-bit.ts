@@ -12,16 +12,13 @@ export interface FluentBitProps {
 }
 
 export class FluentBit extends Construct {
-  readonly cluster: eks.ICluster;
-
   constructor(scope: Construct, id: string, props: FluentBitProps) {
     super(scope, id);
 
-    this.cluster = props.cluster;
     const namespace = props.namespace ?? "logging";
 
     const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       manifest: [
         {
           apiVersion: "v1",
@@ -34,7 +31,7 @@ export class FluentBit extends Construct {
     });
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       name: "fluent-bit-sa",
       namespace: namespace,
     });
@@ -44,7 +41,7 @@ export class FluentBit extends Construct {
 
     // https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit
     const chart = new eks.HelmChart(this, "Chart", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       namespace: namespace,
       repository: "https://aws.github.io/eks-charts",
       chart: "aws-for-fluent-bit",

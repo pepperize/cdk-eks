@@ -12,16 +12,13 @@ export interface ExternalDnsProps {
 }
 
 export class ExternalDns extends Construct {
-  readonly cluster: eks.ICluster;
-
   public constructor(scope: Construct, id: string, props: ExternalDnsProps) {
     super(scope, id);
 
-    this.cluster = props.cluster;
     const namespace = props.namespace ?? "dns";
 
     const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       manifest: [
         {
           apiVersion: "v1",
@@ -35,7 +32,7 @@ export class ExternalDns extends Construct {
 
     // https://artifacthub.io/packages/helm/bitnami/external-dns
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       name: "external-dns-sa",
       namespace: namespace,
     });
@@ -54,7 +51,7 @@ export class ExternalDns extends Construct {
     serviceAccount.node.addDependency(namespaceManifest);
 
     const chart = new eks.HelmChart(this, "Chart", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       repository: "https://charts.bitnami.com/bitnami",
       chart: "external-dns",
       release: "external-dns",

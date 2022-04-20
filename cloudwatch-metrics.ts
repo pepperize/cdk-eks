@@ -5,7 +5,7 @@ import { Construct } from "constructs";
 export interface CloudwatchMetricsProps {
   readonly cluster: eks.ICluster;
   /**
-   * @default cloudwatch-metrics
+   * @default metrics
    */
   readonly namespace?: string;
 }
@@ -16,16 +16,13 @@ export interface CloudwatchMetricsProps {
  * @see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-setup-metrics.html
  */
 export class CloudwatchMetrics extends Construct {
-  readonly cluster: eks.ICluster;
-
   constructor(scope: Construct, id: string, props: CloudwatchMetricsProps) {
     super(scope, id);
 
-    this.cluster = props.cluster;
     const namespace = props.namespace ?? "metrics";
 
     const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       manifest: [
         {
           apiVersion: "v1",
@@ -38,7 +35,7 @@ export class CloudwatchMetrics extends Construct {
     });
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       name: "metrics-sa",
       namespace: namespace,
     });
@@ -48,7 +45,7 @@ export class CloudwatchMetrics extends Construct {
 
     // https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit
     const chart = new eks.HelmChart(this, "Chart", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       namespace: namespace,
       repository: "https://aws.github.io/eks-charts",
       chart: "aws-cloudwatch-metrics",

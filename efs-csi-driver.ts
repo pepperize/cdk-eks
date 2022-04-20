@@ -83,18 +83,15 @@ export class EfsCsiDriver extends Construct {
     return `${Names.nodeUniqueId(cluster.node)}-EfsCsiDriver`;
   }
 
-  readonly cluster: eks.ICluster;
-
   public constructor(scope: Construct, id: string, props: EfsCsiDriverProps) {
     super(scope, id);
 
-    this.cluster = props.cluster;
     const namespace = props.namespace ?? "kube-system";
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       namespace: namespace,
       name: "efs-csi-driver-sa",
-      cluster: this.cluster,
+      cluster: props.cluster,
     });
 
     const version = props.version ?? EfsCsiDriverVersion.V1_3_2;
@@ -112,7 +109,7 @@ export class EfsCsiDriver extends Construct {
     }
 
     const chart = new eks.HelmChart(this, "Chart", {
-      cluster: this.cluster,
+      cluster: props.cluster,
       repository: "https://kubernetes-sigs.github.io/aws-efs-csi-driver/",
       chart: "aws-efs-csi-driver",
       release: "aws-efs-csi-driver",

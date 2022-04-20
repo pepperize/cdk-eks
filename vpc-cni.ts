@@ -16,6 +16,11 @@ export class VpcCniVersion implements AddonVersion {
   public static readonly V1_10_2 = new VpcCniVersion("v1.10.2-eksbuild.1", false);
 
   /**
+   * v1.10.3
+   */
+  public static readonly V1_10_3 = new VpcCniVersion("v1.10.3-eksbuild.1", false);
+
+  /**
    * Specify a custom version.
    * Use this if the version you need is not available in one of the predefined versions.
    *
@@ -53,7 +58,11 @@ export interface VpcCniProps {
 }
 
 /**
- * https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
+ * Amazon EKS supports native VPC networking with the Amazon VPC Container Network Interface (CNI) plugin for Kubernetes.
+ * Using this plugin allows Kubernetes pods to have the same IP address inside the pod as they do on the VPC network.
+ *
+ * @see https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html
+ * @see https://docs.aws.amazon.com/eks/latest/userguide/pod-networking.html
  */
 export class VpcCni extends Addon {
   /**
@@ -79,7 +88,7 @@ export class VpcCni extends Addon {
       managedPolicy: managedPolicy,
       addonName: "vpc-cni",
       serviceAccountName: "aws-node",
-      version: props.version ?? VpcCniVersion.V1_10_2,
+      version: props.version ?? VpcCniVersion.V1_10_3,
     });
   }
 }

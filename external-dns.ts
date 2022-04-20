@@ -17,19 +17,6 @@ export class ExternalDns extends Construct {
 
     const namespace = props.namespace ?? "dns";
 
-    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
-      cluster: props.cluster,
-      manifest: [
-        {
-          apiVersion: "v1",
-          kind: "Namespace",
-          metadata: {
-            name: namespace,
-          },
-        },
-      ],
-    });
-
     // https://artifacthub.io/packages/helm/bitnami/external-dns
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: props.cluster,
@@ -48,7 +35,6 @@ export class ExternalDns extends Construct {
         resources: ["*"],
       })
     );
-    serviceAccount.node.addDependency(namespaceManifest);
 
     const chart = new eks.HelmChart(this, "Chart", {
       cluster: props.cluster,
@@ -65,6 +51,6 @@ export class ExternalDns extends Construct {
         },
       },
     });
-    chart.node.addDependency(serviceAccount, namespaceManifest);
+    chart.node.addDependency(serviceAccount);
   }
 }

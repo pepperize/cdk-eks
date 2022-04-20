@@ -17,19 +17,6 @@ export class FluentBit extends Construct {
 
     const namespace = props.namespace ?? "logging";
 
-    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
-      cluster: props.cluster,
-      manifest: [
-        {
-          apiVersion: "v1",
-          kind: "Namespace",
-          metadata: {
-            name: namespace,
-          },
-        },
-      ],
-    });
-
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: props.cluster,
       name: "fluent-bit-sa",
@@ -37,7 +24,6 @@ export class FluentBit extends Construct {
     });
 
     serviceAccount.role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("CloudWatchAgentServerPolicy"));
-    serviceAccount.node.addDependency(namespaceManifest);
 
     // https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit
     const chart = new eks.HelmChart(this, "Chart", {
@@ -66,6 +52,6 @@ export class FluentBit extends Construct {
         },
       },
     });
-    chart.node.addDependency(serviceAccount, namespaceManifest);
+    chart.node.addDependency(serviceAccount);
   }
 }

@@ -20,19 +20,6 @@ export class ExternalSecrets extends Construct {
     const namespace = props.namespace ?? "secrets";
 
     // https://external-secrets.io/v0.5.1/provider-aws-secrets-manager/#aws-authentication
-    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
-      cluster: props.cluster,
-      manifest: [
-        {
-          apiVersion: "v1",
-          kind: "Namespace",
-          metadata: {
-            name: namespace,
-          },
-        },
-      ],
-    });
-
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: props.cluster,
       name: "external-secrets-sa",
@@ -51,7 +38,6 @@ export class ExternalSecrets extends Construct {
         resources: ["*"],
       })
     );
-    serviceAccount.node.addDependency(namespaceManifest);
 
     // https://artifacthub.io/packages/helm/external-secrets-operator/external-secrets
     const chart = new eks.HelmChart(this, "Chart", {
@@ -68,6 +54,6 @@ export class ExternalSecrets extends Construct {
         },
       },
     });
-    chart.node.addDependency(serviceAccount, namespaceManifest);
+    chart.node.addDependency(serviceAccount);
   }
 }

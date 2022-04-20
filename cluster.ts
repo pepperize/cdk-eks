@@ -70,7 +70,7 @@ export class Cluster extends Construct implements ITaggable {
     // domain name
     this.externalDns = new ExternalDns(this, "ExternalDns", {
       cluster: this.cluster,
-      hostedZoneId: props.hostedZoneId,
+      hostedZoneIds: [props.hostedZoneId],
     });
 
     // secrets

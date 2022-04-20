@@ -1,10 +1,11 @@
+import { Annotations } from "aws-cdk-lib";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
 export interface ExternalDnsProps {
   readonly cluster: eks.ICluster;
-  readonly hostedZoneId: string;
+  readonly hostedZoneIds: string[];
   /**
    * @default dns
    */
@@ -17,6 +18,10 @@ export class ExternalDns extends Construct {
 
     const namespace = props.namespace ?? "dns";
 
+    if (props.hostedZoneIds.length == 0) {
+      Annotations.of(this).addError("No hostedZoneId given for external-dns");
+    }
+
     // https://artifacthub.io/packages/helm/bitnami/external-dns
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: props.cluster,
@@ -26,7 +31,9 @@ export class ExternalDns extends Construct {
     serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         actions: ["route53:ChangeResourceRecordSets", "route53:ListResourceRecordSets"],
-        resources: [`arn:aws:route53:::hostedzone/${props.hostedZoneId}`],
+        resources: props.hostedZoneIds.map((hostedZoneId) => {
+          return `arn:aws:route53:::hostedzone/${hostedZoneId}`;
+        }),
       })
     );
     serviceAccount.addToPrincipalPolicy(
@@ -44,7 +51,7 @@ export class ExternalDns extends Construct {
       namespace: namespace,
       version: "6.1.8",
       values: {
-        zoneIdFilters: [props.hostedZoneId],
+        zoneIdFilters: [props.hostedZoneIds],
         serviceAccount: {
           create: false,
           name: serviceAccount.serviceAccountName,

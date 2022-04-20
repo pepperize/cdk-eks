@@ -14,9 +14,25 @@ export interface AddonVersion {
 
 export interface AddonProps {
   readonly cluster: eks.ICluster;
+
+  /**
+   * The name of the addon
+   */
   readonly addonName: string;
+
+  /**
+   * The name of the service account for which to create a role
+   */
   readonly serviceAccountName: string;
+
+  /**
+   * The version of the addon to be deployed
+   */
   readonly version: AddonVersion;
+
+  /**
+   * The managed policy to add to the service account's role
+   */
   readonly managedPolicy: iam.IManagedPolicy;
 
   /**
@@ -37,23 +53,17 @@ export class Addon extends Construct {
     super(scope, id);
     const namespace = props.namespace ?? "kube-system";
 
-    const account = Stack.of(this).account;
     const region = Stack.of(this).region;
-
     const issuer = props.cluster.openIdConnectProvider.openIdConnectProviderIssuer;
     this.serviceAccountRole = new iam.Role(this, "ServiceAccountRole", {
-      assumedBy: new iam.FederatedPrincipal(
-        `arn:aws:iam::${account}:oidc-provider/oidc.eks.${region}.amazonaws.com/id/${issuer}`,
-        {
-          StringEquals: new CfnJson(this, "Condition", {
-            value: {
-              [`oidc.eks.${region}.amazonaws.com/id/${issuer}:aud`]: "sts.amazonaws.com",
-              [`oidc.eks.${region}.amazonaws.com/id/${issuer}:sub`]: `system:serviceaccount:${namespace}:${props.serviceAccountName}`,
-            },
-          }),
-        },
-        "sts:AssumeRoleWithWebIdentity"
-      ),
+      assumedBy: new iam.OpenIdConnectPrincipal(props.cluster.openIdConnectProvider, {
+        StringEquals: new CfnJson(this, "Condition", {
+          value: {
+            [`oidc.eks.${region}.amazonaws.com/id/${issuer}:aud`]: "sts.amazonaws.com",
+            [`oidc.eks.${region}.amazonaws.com/id/${issuer}:sub`]: `system:serviceaccount:${namespace}:${props.serviceAccountName}`,
+          },
+        }),
+      }),
     });
     this.serviceAccountRole.addManagedPolicy(props.managedPolicy);
 

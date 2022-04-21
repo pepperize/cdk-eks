@@ -1,5 +1,5 @@
 {
-  "name": "cdk-eks",
+  "name": "@pepperize/cdk-eks",
   "repository": {
     "type": "git",
     "url": "git@github.com:pepperize/cdk-eks.git"
@@ -40,7 +40,7 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk-lib": "2.1.0",
+    "aws-cdk-lib": "2.20.0",
     "constructs": "10.0.5",
     "eslint": "^8",
     "eslint-config-prettier": "^8.5.0",
@@ -62,7 +62,7 @@
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.1.0",
+    "aws-cdk-lib": "^2.20.0",
     "constructs": "^10.0.5"
   },
   "keywords": [
@@ -70,6 +70,9 @@
   ],
   "main": "lib/index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [

@@ -660,6 +660,7 @@ Object {
     "ClusterCloudwatchMetricsChart36354B71": Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
+        "ClusterCloudwatchMetricsNamespace99D508D3",
         "ClusterCloudwatchMetricsServiceAccountConditionJsonCA718252",
         "ClusterCloudwatchMetricsServiceAccountmanifestServiceAccountServiceAccountResource6BEFAFAE",
         "ClusterCloudwatchMetricsServiceAccountRoleEA5A509E",
@@ -670,7 +671,6 @@ Object {
         "ClusterName": Object {
           "Ref": "Cluster503F4F65",
         },
-        "CreateNamespace": true,
         "Namespace": "metrics",
         "Release": "aws-cloudwatch-metrics",
         "Repository": "https://aws.github.io/eks-charts",
@@ -692,8 +692,38 @@ Object {
       "Type": "Custom::AWSCDK-EKS-HelmChart",
       "UpdateReplacePolicy": "Delete",
     },
+    "ClusterCloudwatchMetricsNamespace99D508D3": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterKubectlReadyBarrier7A62DA2A",
+      ],
+      "Properties": Object {
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "Manifest": "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"Namespace\\",\\"metadata\\":{\\"name\\":\\"metrics\\",\\"labels\\":{\\"aws.cdk.eks/prune-c8bd6ca02e14e3f012f4d4a8309dfaa32337076893\\":\\"\\"}}}]",
+        "PruneLabel": "aws.cdk.eks/prune-c8bd6ca02e14e3f012f4d4a8309dfaa32337076893",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDK-EKS-KubernetesResource",
+      "UpdateReplacePolicy": "Delete",
+    },
     "ClusterCloudwatchMetricsServiceAccountConditionJsonCA718252": Object {
       "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterCloudwatchMetricsNamespace99D508D3",
+      ],
       "Properties": Object {
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -742,6 +772,9 @@ Object {
       "UpdateReplacePolicy": "Delete",
     },
     "ClusterCloudwatchMetricsServiceAccountRoleEA5A509E": Object {
+      "DependsOn": Array [
+        "ClusterCloudwatchMetricsNamespace99D508D3",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -785,6 +818,7 @@ Object {
     "ClusterCloudwatchMetricsServiceAccountmanifestServiceAccountServiceAccountResource6BEFAFAE": Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
+        "ClusterCloudwatchMetricsNamespace99D508D3",
         "ClusterKubectlReadyBarrier7A62DA2A",
       ],
       "Properties": Object {
@@ -1377,6 +1411,7 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterExternalDnsNamespaceEBAF4622",
         "ClusterExternalDnsServiceAccountConditionJson3F580D5D",
         "ClusterExternalDnsServiceAccountmanifestServiceAccountServiceAccountResource54E68882",
         "ClusterExternalDnsServiceAccountRoleDefaultPolicy6CF55615",
@@ -1387,7 +1422,6 @@ Object {
         "ClusterName": Object {
           "Ref": "Cluster503F4F65",
         },
-        "CreateNamespace": true,
         "Namespace": "dns",
         "Release": "external-dns",
         "Repository": "https://charts.bitnami.com/bitnami",
@@ -1409,8 +1443,38 @@ Object {
       "Type": "Custom::AWSCDK-EKS-HelmChart",
       "UpdateReplacePolicy": "Delete",
     },
+    "ClusterExternalDnsNamespaceEBAF4622": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterKubectlReadyBarrier7A62DA2A",
+      ],
+      "Properties": Object {
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "Manifest": "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"Namespace\\",\\"metadata\\":{\\"name\\":\\"dns\\",\\"labels\\":{\\"aws.cdk.eks/prune-c84c3a823b089e5dba20a005f4a43006bf3986ef7f\\":\\"\\"}}}]",
+        "PruneLabel": "aws.cdk.eks/prune-c84c3a823b089e5dba20a005f4a43006bf3986ef7f",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDK-EKS-KubernetesResource",
+      "UpdateReplacePolicy": "Delete",
+    },
     "ClusterExternalDnsServiceAccountConditionJson3F580D5D": Object {
       "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterExternalDnsNamespaceEBAF4622",
+      ],
       "Properties": Object {
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -1459,6 +1523,9 @@ Object {
       "UpdateReplacePolicy": "Delete",
     },
     "ClusterExternalDnsServiceAccountRole4064B310": Object {
+      "DependsOn": Array [
+        "ClusterExternalDnsNamespaceEBAF4622",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -1486,6 +1553,9 @@ Object {
       "Type": "AWS::IAM::Role",
     },
     "ClusterExternalDnsServiceAccountRoleDefaultPolicy6CF55615": Object {
+      "DependsOn": Array [
+        "ClusterExternalDnsNamespaceEBAF4622",
+      ],
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -1518,6 +1588,7 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterExternalDnsNamespaceEBAF4622",
       ],
       "Properties": Object {
         "ClusterName": Object {
@@ -1559,6 +1630,7 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterExternalSecretsNamespace5B50DC25",
         "ClusterExternalSecretsServiceAccountConditionJson5EA969D1",
         "ClusterExternalSecretsServiceAccountmanifestServiceAccountServiceAccountResource990A4D06",
         "ClusterExternalSecretsServiceAccountRoleDefaultPolicy8AC3A48C",
@@ -1569,7 +1641,6 @@ Object {
         "ClusterName": Object {
           "Ref": "Cluster503F4F65",
         },
-        "CreateNamespace": true,
         "Namespace": "secrets",
         "Release": "external-secrets",
         "Repository": "https://charts.external-secrets.io",
@@ -1591,8 +1662,38 @@ Object {
       "Type": "Custom::AWSCDK-EKS-HelmChart",
       "UpdateReplacePolicy": "Delete",
     },
+    "ClusterExternalSecretsNamespace5B50DC25": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterKubectlReadyBarrier7A62DA2A",
+      ],
+      "Properties": Object {
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "Manifest": "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"Namespace\\",\\"metadata\\":{\\"name\\":\\"secrets\\",\\"labels\\":{\\"aws.cdk.eks/prune-c8835d6f2294d75b50f6ed62c977ccee9326a07ec7\\":\\"\\"}}}]",
+        "PruneLabel": "aws.cdk.eks/prune-c8835d6f2294d75b50f6ed62c977ccee9326a07ec7",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDK-EKS-KubernetesResource",
+      "UpdateReplacePolicy": "Delete",
+    },
     "ClusterExternalSecretsServiceAccountConditionJson5EA969D1": Object {
       "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterExternalSecretsNamespace5B50DC25",
+      ],
       "Properties": Object {
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -1641,6 +1742,9 @@ Object {
       "UpdateReplacePolicy": "Delete",
     },
     "ClusterExternalSecretsServiceAccountRole61C163C0": Object {
+      "DependsOn": Array [
+        "ClusterExternalSecretsNamespace5B50DC25",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -1668,6 +1772,9 @@ Object {
       "Type": "AWS::IAM::Role",
     },
     "ClusterExternalSecretsServiceAccountRoleDefaultPolicy8AC3A48C": Object {
+      "DependsOn": Array [
+        "ClusterExternalSecretsNamespace5B50DC25",
+      ],
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -1698,6 +1805,7 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterExternalSecretsNamespace5B50DC25",
       ],
       "Properties": Object {
         "ClusterName": Object {
@@ -1739,6 +1847,7 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterFluentBitNamespace6D3F5113",
         "ClusterFluentBitServiceAccountConditionJsonF92BA11A",
         "ClusterFluentBitServiceAccountmanifestServiceAccountServiceAccountResource2087511E",
         "ClusterFluentBitServiceAccountRoleD13F69CA",
@@ -1748,7 +1857,6 @@ Object {
         "ClusterName": Object {
           "Ref": "Cluster503F4F65",
         },
-        "CreateNamespace": true,
         "Namespace": "logging",
         "Release": "aws-for-fluent-bit",
         "Repository": "https://aws.github.io/eks-charts",
@@ -1781,8 +1889,38 @@ Object {
       "Type": "Custom::AWSCDK-EKS-HelmChart",
       "UpdateReplacePolicy": "Delete",
     },
+    "ClusterFluentBitNamespace6D3F5113": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterKubectlReadyBarrier7A62DA2A",
+      ],
+      "Properties": Object {
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "Manifest": "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"Namespace\\",\\"metadata\\":{\\"name\\":\\"logging\\",\\"labels\\":{\\"aws.cdk.eks/prune-c8b63e2858a8a606da6b75d1010c6e821903516590\\":\\"\\"}}}]",
+        "PruneLabel": "aws.cdk.eks/prune-c8b63e2858a8a606da6b75d1010c6e821903516590",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDK-EKS-KubernetesResource",
+      "UpdateReplacePolicy": "Delete",
+    },
     "ClusterFluentBitServiceAccountConditionJsonF92BA11A": Object {
       "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterFluentBitNamespace6D3F5113",
+      ],
       "Properties": Object {
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -1831,6 +1969,9 @@ Object {
       "UpdateReplacePolicy": "Delete",
     },
     "ClusterFluentBitServiceAccountRoleD13F69CA": Object {
+      "DependsOn": Array [
+        "ClusterFluentBitNamespace6D3F5113",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -1875,6 +2016,7 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterFluentBitNamespace6D3F5113",
       ],
       "Properties": Object {
         "ClusterName": Object {

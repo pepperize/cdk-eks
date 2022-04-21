@@ -25,7 +25,7 @@ export class Cluster extends Construct implements ITaggable {
   public readonly tags = new TagManager(TagType.MAP, "AWS::EKS::Cluster");
 
   public readonly mainRole: iam.IRole;
-  public readonly cluster: eks.Cluster;
+  public readonly resource: eks.Cluster;
   public readonly autoscaling: Karpenter;
   public readonly albController: eks.AlbController;
   public readonly externalDns: ExternalDns;
@@ -40,7 +40,7 @@ export class Cluster extends Construct implements ITaggable {
       assumedBy: new iam.AccountRootPrincipal(),
     });
 
-    this.cluster = new eks.Cluster(this, "Cluster", {
+    this.resource = new eks.Cluster(this, "Cluster", {
       vpc: props.vpc,
       mastersRole: this.mainRole,
       clusterName: props.clusterName ?? "Cluster",
@@ -49,7 +49,7 @@ export class Cluster extends Construct implements ITaggable {
       tags: this.tags.renderedTags as unknown as { [key: string]: string },
     });
 
-    const awsAuth = this.cluster.awsAuth;
+    const awsAuth = this.resource.awsAuth;
     for (const role of props.mainRoles) {
       awsAuth.addMastersRole(role);
     }
@@ -57,44 +57,44 @@ export class Cluster extends Construct implements ITaggable {
     // autoscaling
     // https://artifacthub.io/packages/helm/karpenter/karpenter
     this.autoscaling = new Karpenter(this, "Karpenter", {
-      cluster: this.cluster as eks.Cluster,
+      cluster: this.resource as eks.Cluster,
       vpc: props.vpc,
     });
 
     // load balancing
     this.albController = new eks.AlbController(this, "AwsLoadBalancerController", {
-      cluster: this.cluster as eks.Cluster,
+      cluster: this.resource as eks.Cluster,
       version: eks.AlbControllerVersion.V2_4_1,
     });
 
     // domain name
     this.externalDns = new ExternalDns(this, "ExternalDns", {
-      cluster: this.cluster,
+      cluster: this.resource,
       hostedZoneIds: props.hostedZoneIds,
     });
 
     // secrets
     this.externalSecrets = new ExternalSecrets(this, "ExternalSecrets", {
-      cluster: this.cluster,
+      cluster: this.resource,
     });
 
     // logging
     this.logging = new FluentBit(this, "FluentBit", {
-      cluster: this.cluster,
+      cluster: this.resource,
     });
 
     // metrics
     this.metrics = new CloudwatchMetrics(this, "CloudwatchMetrics", {
-      cluster: this.cluster,
+      cluster: this.resource,
     });
 
     // filesystem
     new EfsCsiDriver(this, "EfsCsiDriver", {
-      cluster: this.cluster,
+      cluster: this.resource,
     });
 
     new EbsCsiDriver(this, "EbsCsiDriver", {
-      cluster: this.cluster,
+      cluster: this.resource,
     });
   }
 }

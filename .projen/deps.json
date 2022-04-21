@@ -29,6 +29,10 @@
       "type": "build"
     },
     {
+      "name": "cdk-karpenter",
+      "type": "build"
+    },
+    {
       "name": "cdk-nag",
       "type": "build"
     },
@@ -114,12 +118,12 @@
       "type": "build"
     },
     {
-      "name": "cdk-karpenter",
-      "type": "bundled"
-    },
-    {
       "name": "aws-cdk-lib",
       "version": "^2.20.0",
+      "type": "peer"
+    },
+    {
+      "name": "cdk-karpenter",
       "type": "peer"
     },
     {

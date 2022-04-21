@@ -18,12 +18,17 @@ export class ExternalDns extends Construct {
 
     const namespace = props.namespace ?? "dns";
 
-    const namespaceManifest = props.cluster.addManifest("Namespace", {
-      apiVersion: "v1",
-      kind: "Namespace",
-      metadata: {
-        name: namespace,
-      },
+    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
+      cluster: props.cluster,
+      manifest: [
+        {
+          apiVersion: "v1",
+          kind: "Namespace",
+          metadata: {
+            name: namespace,
+          },
+        },
+      ],
     });
 
     if (props.hostedZoneIds.length == 0) {

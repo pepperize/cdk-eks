@@ -21,12 +21,17 @@ export class CloudwatchMetrics extends Construct {
 
     const namespace = props.namespace ?? "metrics";
 
-    const namespaceManifest = props.cluster.addManifest("Namespace", {
-      apiVersion: "v1",
-      kind: "Namespace",
-      metadata: {
-        name: namespace,
-      },
+    const namespaceManifest = new eks.KubernetesManifest(this, "Namespace", {
+      cluster: props.cluster,
+      manifest: [
+        {
+          apiVersion: "v1",
+          kind: "Namespace",
+          metadata: {
+            name: namespace,
+          },
+        },
+      ],
     });
 
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {

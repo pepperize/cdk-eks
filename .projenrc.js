@@ -9,7 +9,7 @@ const project = new AwsCdkConstructLibrary({
 
   packageName: "@pepperize/cdk-eks",
 
-  deps: ["cdk-karpenter"],
+  peerDeps: ["cdk-karpenter"],
   devDeps: ["@pepperize/projen-awscdk-construct", "cdk-nag"],
 });
 project.synth();

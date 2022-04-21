@@ -1,9 +1,8 @@
-import * as fs from "fs";
-import * as path from "path";
 import { Duration, Names, Stack } from "aws-cdk-lib";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
+import * as policy_v1_3_2 from "./efs-csi-driver_policy-v1.3.2.json";
 
 export class EfsCsiDriverVersion {
   /**
@@ -34,6 +33,10 @@ export class EfsCsiDriverVersion {
     public readonly custom: boolean
   ) {}
 }
+
+const policies = {
+  [EfsCsiDriverVersion.V1_3_2.version]: policy_v1_3_2,
+};
 
 export interface EfsCsiDriverProps {
   readonly cluster: eks.ICluster;
@@ -100,9 +103,7 @@ export class EfsCsiDriver extends Construct {
     }
 
     // https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/deploy/installation/#iam-permissions
-    const policy: any =
-      props.policy ??
-      JSON.parse(fs.readFileSync(path.join(__dirname, `efs-csi-driver_policy-${version.version}.json`), "utf8"));
+    const policy: any = props.policy ?? policies[version.version];
 
     for (const statement of policy.Statement) {
       serviceAccount.addToPrincipalPolicy(iam.PolicyStatement.fromJson(statement));

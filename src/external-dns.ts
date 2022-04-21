@@ -18,6 +18,14 @@ export class ExternalDns extends Construct {
 
     const namespace = props.namespace ?? "dns";
 
+    const namespaceManifest = props.cluster.addManifest("Namespace", {
+      apiVersion: "v1",
+      kind: "Namespace",
+      metadata: {
+        name: namespace,
+      },
+    });
+
     if (props.hostedZoneIds.length == 0) {
       Annotations.of(this).addError("No hostedZoneId given for external-dns");
     }
@@ -28,6 +36,7 @@ export class ExternalDns extends Construct {
       name: "external-dns-sa",
       namespace: namespace,
     });
+    serviceAccount.node.addDependency(namespaceManifest);
     serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         actions: ["route53:ChangeResourceRecordSets", "route53:ListResourceRecordSets"],
@@ -45,10 +54,11 @@ export class ExternalDns extends Construct {
 
     const chart = new eks.HelmChart(this, "Chart", {
       cluster: props.cluster,
+      namespace: namespace,
+      createNamespace: false,
       repository: "https://charts.bitnami.com/bitnami",
       chart: "external-dns",
       release: "external-dns",
-      namespace: namespace,
       version: "6.1.8",
       values: {
         zoneIdFilters: [props.hostedZoneIds],
@@ -58,6 +68,6 @@ export class ExternalDns extends Construct {
         },
       },
     });
-    chart.node.addDependency(serviceAccount);
+    chart.node.addDependency(serviceAccount, namespaceManifest);
   }
 }

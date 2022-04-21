@@ -19,12 +19,21 @@ export class ExternalSecrets extends Construct {
 
     const namespace = props.namespace ?? "secrets";
 
+    const namespaceManifest = props.cluster.addManifest("Namespace", {
+      apiVersion: "v1",
+      kind: "Namespace",
+      metadata: {
+        name: namespace,
+      },
+    });
+
     // https://external-secrets.io/v0.5.1/provider-aws-secrets-manager/#aws-authentication
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: props.cluster,
       name: "external-secrets-sa",
       namespace,
     });
+    serviceAccount.node.addDependency(namespaceManifest);
     serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
@@ -42,10 +51,11 @@ export class ExternalSecrets extends Construct {
     // https://artifacthub.io/packages/helm/external-secrets-operator/external-secrets
     const chart = new eks.HelmChart(this, "Chart", {
       cluster: props.cluster,
+      namespace: namespace,
+      createNamespace: false,
       repository: "https://charts.external-secrets.io",
       chart: "external-secrets",
       release: "external-secrets",
-      namespace: namespace,
       version: "0.5.1",
       values: {
         serviceAccount: {
@@ -54,6 +64,6 @@ export class ExternalSecrets extends Construct {
         },
       },
     });
-    chart.node.addDependency(serviceAccount);
+    chart.node.addDependency(serviceAccount, namespaceManifest);
   }
 }

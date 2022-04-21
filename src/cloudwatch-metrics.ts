@@ -21,18 +21,27 @@ export class CloudwatchMetrics extends Construct {
 
     const namespace = props.namespace ?? "metrics";
 
+    const namespaceManifest = props.cluster.addManifest("Namespace", {
+      apiVersion: "v1",
+      kind: "Namespace",
+      metadata: {
+        name: namespace,
+      },
+    });
+
     const serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
       cluster: props.cluster,
       name: "metrics-sa",
       namespace: namespace,
     });
-
+    serviceAccount.node.addDependency(namespaceManifest);
     serviceAccount.role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("CloudWatchAgentServerPolicy"));
 
     // https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit
     const chart = new eks.HelmChart(this, "Chart", {
       cluster: props.cluster,
       namespace: namespace,
+      createNamespace: false,
       repository: "https://aws.github.io/eks-charts",
       chart: "aws-cloudwatch-metrics",
       release: "aws-cloudwatch-metrics",
@@ -44,6 +53,6 @@ export class CloudwatchMetrics extends Construct {
         },
       },
     });
-    chart.node.addDependency(serviceAccount);
+    chart.node.addDependency(serviceAccount, namespaceManifest);
   }
 }

@@ -10,7 +10,6 @@
     ".github/workflows/release.yml",
     ".github/workflows/stale.yml",
     ".gitignore",
-    ".gitpod.yml",
     ".mergify.yml",
     ".prettierignore",
     ".prettierrc.json",

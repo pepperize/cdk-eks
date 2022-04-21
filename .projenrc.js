@@ -1,5 +1,8 @@
 const { AwsCdkConstructLibrary } = require("@pepperize/projen-awscdk-construct");
+const { cdk, javascript } = require("projen");
 const project = new AwsCdkConstructLibrary({
+  stability: cdk.Stability.EXPERIMENTAL,
+
   author: "Andreas Forster",
   authorAddress: "andreas.forster@pepperize.com",
   cdkVersion: "2.20.0",
@@ -11,5 +14,17 @@ const project = new AwsCdkConstructLibrary({
 
   peerDeps: ["cdk-karpenter"],
   devDeps: ["@pepperize/projen-awscdk-construct", "cdk-nag"],
+
+  releaseToNpm: true,
+  npmAccess: javascript.NpmAccess.PUBLIC,
+  publishToNuget: {
+    dotNetNamespace: "Pepperize.CDK",
+    packageId: "Pepperize.CDK.EKS",
+  },
+  publishToPypi: {
+    distName: "pepperize.cdk-eks",
+    module: "pepperize_cdk_eks",
+  },
 });
+
 project.synth();

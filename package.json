@@ -66,6 +66,9 @@
     "aws-cdk-lib": "^2.20.0",
     "constructs": "^10.0.5"
   },
+  "dependencies": {
+    "cdk-karpenter": "^1.6.3"
+  },
   "keywords": [
     "cdk"
   ],

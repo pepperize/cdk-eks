@@ -1130,7 +1130,7 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@2.20.0:
+aws-cdk-lib@2.20.0, aws-cdk-lib@^2.20.0:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.20.0.tgz#bb22702cc3748d8ed7eb42646f473ff740311bfe"
   integrity sha512-jACK/1UJxtWWl6QH+I1V8Oc8F1EEL6aFQYk24DIrzNyB1Aj9LIs9/NyDu5zN00QFKrR6aDE7WAv1VG3sa6wWdg==
@@ -1367,6 +1367,13 @@ case@1.6.3, case@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
+
+cdk-karpenter@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/cdk-karpenter/-/cdk-karpenter-1.6.3.tgz#87b9a8daae5b9fce33642aba6e49f6ad50984abe"
+  integrity sha512-7t0VOO3UgrRRoYiMrC1Pu4RfTDBYkCsVkgEsVfEHKQbs97vX5vmVjvsN94gmOEZ5UIHuT2n6T5TIF+J1Mppxug==
+  dependencies:
+    aws-cdk-lib "^2.20.0"
 
 cdk-nag@^2.12.31:
   version "2.12.31"

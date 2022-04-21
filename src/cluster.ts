@@ -16,7 +16,7 @@ export interface BaseClusterProps {
 }
 
 export interface ClusterProps extends BaseClusterProps {
-  readonly hostedZoneId: string;
+  readonly hostedZoneIds: string[];
   readonly vpc: ec2.IVpc;
   readonly mainRoles: iam.IRole[];
 }
@@ -70,7 +70,7 @@ export class Cluster extends Construct implements ITaggable {
     // domain name
     this.externalDns = new ExternalDns(this, "ExternalDns", {
       cluster: this.cluster,
-      hostedZoneIds: [props.hostedZoneId],
+      hostedZoneIds: props.hostedZoneIds,
     });
 
     // secrets

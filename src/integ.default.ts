@@ -9,7 +9,7 @@ const vpc = new ec2.Vpc(stack, "Vpc", {});
 
 new Cluster(stack, "Cluster", {
   vpc: vpc,
-  hostedZoneId: "",
+  hostedZoneIds: ["Z1D633PJN98FT9"],
   mainRoles: [],
 });
 

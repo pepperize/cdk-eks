@@ -11,5 +11,15 @@ const project = new AwsCdkConstructLibrary({
 
   peerDeps: ["cdk-karpenter"],
   devDeps: ["@pepperize/projen-awscdk-construct", "cdk-nag"],
+
+  gitpod: true,
 });
+
+project.gitpod.addCustomTask({
+  name: "setup",
+  init: "yarn install && npx projen build",
+  command: "npx projen watch",
+});
+project.gitpod.addVscodeExtensions("dbaeumer.vscode-eslint");
+
 project.synth();

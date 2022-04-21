@@ -12,14 +12,14 @@ const project = new AwsCdkConstructLibrary({
 
   packageName: "@pepperize/cdk-eks",
 
-  peerDeps: ["cdk-karpenter"],
+  bundledDeps: ["cdk-karpenter"],
   devDeps: ["@pepperize/projen-awscdk-construct", "cdk-nag"],
 
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
   publishToNuget: {
     dotNetNamespace: "Pepperize.CDK",
-    packageId: "Pepperize.CDK.EKS",
+    packageId: "Pepperize.CDK.Eks",
   },
   publishToPypi: {
     distName: "pepperize.cdk-eks",

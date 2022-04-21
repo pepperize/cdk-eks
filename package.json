@@ -43,7 +43,6 @@
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "aws-cdk-lib": "2.20.0",
-    "cdk-karpenter": "^1.6.3",
     "cdk-nag": "^2.12.31",
     "constructs": "10.0.5",
     "eslint": "^8",
@@ -67,9 +66,14 @@
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.20.0",
-    "cdk-karpenter": "^1.6.3",
     "constructs": "^10.0.5"
   },
+  "dependencies": {
+    "cdk-karpenter": "^1.6.3"
+  },
+  "bundledDependencies": [
+    "cdk-karpenter"
+  ],
   "keywords": [
     "cdk"
   ],
@@ -131,7 +135,7 @@
       },
       "dotnet": {
         "namespace": "Pepperize.CDK",
-        "packageId": "Pepperize.CDK.EKS"
+        "packageId": "Pepperize.CDK.Eks"
       }
     },
     "tsc": {

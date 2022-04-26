@@ -1,6 +1,5 @@
 import { Names, Stack } from "aws-cdk-lib";
 import * as eks from "aws-cdk-lib/aws-eks";
-import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 import { Addon, AddonVersion } from "./addon";
 
@@ -81,13 +80,9 @@ export class VpcCni extends Addon {
   }
 
   public constructor(scope: Construct, id: string, props: VpcCniProps) {
-    const managedPolicy = iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonEKS_CNI_Policy");
-
     super(scope, id, {
       ...props,
-      managedPolicy: managedPolicy,
       addonName: "vpc-cni",
-      serviceAccountName: "aws-node",
       version: props.version ?? VpcCniVersion.V1_10_3,
     });
   }

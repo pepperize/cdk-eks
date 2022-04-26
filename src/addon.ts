@@ -1,4 +1,3 @@
-import { CfnJson, Stack } from "aws-cdk-lib";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
@@ -23,7 +22,7 @@ export interface AddonProps {
   /**
    * The name of the service account for which to create a role
    */
-  readonly serviceAccountName: string;
+  readonly serviceAccountName?: string;
 
   /**
    * The version of the addon to be deployed
@@ -33,7 +32,7 @@ export interface AddonProps {
   /**
    * The managed policy to add to the service account's role
    */
-  readonly managedPolicy: iam.IManagedPolicy;
+  readonly managedPolicy?: iam.IManagedPolicy;
 
   /**
    * @default kube-system
@@ -47,33 +46,27 @@ export interface AddonProps {
 }
 
 export class Addon extends Construct {
-  readonly serviceAccountRole: iam.IRole;
+  readonly serviceAccount?: eks.ServiceAccount;
 
   public constructor(scope: Construct, id: string, props: AddonProps) {
     super(scope, id);
     const namespace = props.namespace ?? "kube-system";
 
-    const region = Stack.of(this).region;
-    const issuer = props.cluster.openIdConnectProvider.openIdConnectProviderIssuer;
-    this.serviceAccountRole = new iam.Role(this, "ServiceAccountRole", {
-      assumedBy: new iam.OpenIdConnectPrincipal(props.cluster.openIdConnectProvider, {
-        StringEquals: new CfnJson(this, "Condition", {
-          value: {
-            [`oidc.eks.${region}.amazonaws.com/id/${issuer}:aud`]: "sts.amazonaws.com",
-            [`oidc.eks.${region}.amazonaws.com/id/${issuer}:sub`]: `system:serviceaccount:${namespace}:${props.serviceAccountName}`,
-          },
-        }),
-      }),
-    });
-    this.serviceAccountRole.addManagedPolicy(props.managedPolicy);
+    if (props.managedPolicy) {
+      this.serviceAccount = new eks.ServiceAccount(this, "ServiceAccount", {
+        cluster: props.cluster,
+        name: props.serviceAccountName ?? props.addonName,
+        namespace: namespace,
+      });
+      this.serviceAccount?.role.addManagedPolicy(props.managedPolicy);
+    }
 
-    const addon = new eks.CfnAddon(this, "Addon", {
+    new eks.CfnAddon(this, "Addon", {
       addonName: props.addonName,
       clusterName: props.cluster.clusterName,
-      serviceAccountRoleArn: this.serviceAccountRole.roleArn,
+      serviceAccountRoleArn: this.serviceAccount?.role.roleArn,
       addonVersion: props.version.version,
       resolveConflicts: props.resolveConflicts ?? ResolveConflicts.OVERWRITE,
     });
-    addon.node.addDependency(this.serviceAccountRole);
   }
 }

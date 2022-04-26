@@ -606,34 +606,6 @@ The tree node.
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### BaseClusterProps <a name="BaseClusterProps" id="@pepperize/cdk-eks.BaseClusterProps"></a>
-
-#### Initializer <a name="Initializer" id="@pepperize/cdk-eks.BaseClusterProps.Initializer"></a>
-
-```typescript
-import { BaseClusterProps } from '@pepperize/cdk-eks'
-
-const baseClusterProps: BaseClusterProps = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@pepperize/cdk-eks.BaseClusterProps.property.clusterName">clusterName</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `clusterName`<sup>Optional</sup> <a name="clusterName" id="@pepperize/cdk-eks.BaseClusterProps.property.clusterName"></a>
-
-```typescript
-public readonly clusterName: string;
-```
-
-- *Type:* string
-
----
-
 ### CloudwatchMetricsProps <a name="CloudwatchMetricsProps" id="@pepperize/cdk-eks.CloudwatchMetricsProps"></a>
 
 #### Initializer <a name="Initializer" id="@pepperize/cdk-eks.CloudwatchMetricsProps.Initializer"></a>
@@ -688,20 +660,11 @@ const clusterProps: ClusterProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@pepperize/cdk-eks.ClusterProps.property.clusterName">clusterName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@pepperize/cdk-eks.ClusterProps.property.hostedZoneIds">hostedZoneIds</a></code> | <code>string[]</code> | *No description.* |
 | <code><a href="#@pepperize/cdk-eks.ClusterProps.property.mainRoles">mainRoles</a></code> | <code>aws-cdk-lib.aws_iam.IRole[]</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.ClusterProps.property.secretsEncryptionKey">secretsEncryptionKey</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | *No description.* |
 | <code><a href="#@pepperize/cdk-eks.ClusterProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
-
----
-
-##### `clusterName`<sup>Optional</sup> <a name="clusterName" id="@pepperize/cdk-eks.ClusterProps.property.clusterName"></a>
-
-```typescript
-public readonly clusterName: string;
-```
-
-- *Type:* string
+| <code><a href="#@pepperize/cdk-eks.ClusterProps.property.clusterName">clusterName</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -725,6 +688,16 @@ public readonly mainRoles: IRole[];
 
 ---
 
+##### `secretsEncryptionKey`<sup>Required</sup> <a name="secretsEncryptionKey" id="@pepperize/cdk-eks.ClusterProps.property.secretsEncryptionKey"></a>
+
+```typescript
+public readonly secretsEncryptionKey: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+---
+
 ##### `vpc`<sup>Required</sup> <a name="vpc" id="@pepperize/cdk-eks.ClusterProps.property.vpc"></a>
 
 ```typescript
@@ -732,6 +705,16 @@ public readonly vpc: IVpc;
 ```
 
 - *Type:* aws-cdk-lib.aws_ec2.IVpc
+
+---
+
+##### `clusterName`<sup>Optional</sup> <a name="clusterName" id="@pepperize/cdk-eks.ClusterProps.property.clusterName"></a>
+
+```typescript
+public readonly clusterName: string;
+```
+
+- *Type:* string
 
 ---
 

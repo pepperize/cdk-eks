@@ -149,6 +149,21 @@ Object {
         },
         "AttributesRevision": 2,
         "Config": Object {
+          "encryptionConfig": Array [
+            Object {
+              "provider": Object {
+                "keyArn": Object {
+                  "Fn::GetAtt": Array [
+                    "Key961B73FD",
+                    "Arn",
+                  ],
+                },
+              },
+              "resources": Array [
+                "secrets",
+              ],
+            },
+          ],
           "name": "Cluster",
           "resourcesVpcConfig": Object {
             "endpointPrivateAccess": true,
@@ -1079,6 +1094,21 @@ Object {
               ],
               "Effect": "Allow",
               "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:CreateGrant",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "Key961B73FD",
+                  "Arn",
+                ],
+              },
             },
           ],
           "Version": "2012-10-17",
@@ -2962,6 +2992,41 @@ def on_delete(event):
         ],
       },
       "Type": "AWS::IAM::Role",
+    },
+    "Key961B73FD": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "KeyPolicy": Object {
+          "Statement": Array [
+            Object {
+              "Action": "kms:*",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::KMS::Key",
+      "UpdateReplacePolicy": "Retain",
     },
     "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": Object {
       "DependsOn": Array [

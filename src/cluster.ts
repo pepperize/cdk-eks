@@ -2,6 +2,7 @@ import { ITaggable, TagManager, TagType } from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
+import * as kms from "aws-cdk-lib/aws-kms";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
 import { CloudwatchMetrics } from "./cloudwatch-metrics";
@@ -11,11 +12,9 @@ import { ExternalDns } from "./external-dns";
 import { ExternalSecrets } from "./external-secrets";
 import { FluentBit } from "./fluent-bit";
 
-export interface BaseClusterProps {
+export interface ClusterProps {
   readonly clusterName?: string;
-}
-
-export interface ClusterProps extends BaseClusterProps {
+  readonly secretsEncryptionKey: kms.IKey;
   readonly hostedZoneIds: string[];
   readonly vpc: ec2.IVpc;
   readonly mainRoles: iam.IRole[];
@@ -45,6 +44,7 @@ export class Cluster extends Construct implements ITaggable {
       mastersRole: this.mainRole,
       clusterName: props.clusterName ?? "Cluster",
       version: eks.KubernetesVersion.V1_22,
+      secretsEncryptionKey: props.secretsEncryptionKey,
       defaultCapacityInstance: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
       tags: this.tags.renderedTags as unknown as { [key: string]: string },
     });

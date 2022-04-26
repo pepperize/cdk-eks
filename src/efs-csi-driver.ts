@@ -116,8 +116,6 @@ export class EfsCsiDriver extends Construct {
       release: "aws-efs-csi-driver",
       namespace,
       version: "2.2.5",
-      wait: true,
-      timeout: Duration.minutes(15),
       values: {
         serviceAccount: {
           create: false,
@@ -128,6 +126,8 @@ export class EfsCsiDriver extends Construct {
           tag: version.version,
         },
       },
+      wait: true,
+      timeout: Duration.minutes(15),
     });
     chart.node.addDependency(serviceAccount);
   }

@@ -1184,22 +1184,7 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.20.0.tgz#bb22702cc3748d8ed7eb42646f473ff740311bfe"
-  integrity sha512-jACK/1UJxtWWl6QH+I1V8Oc8F1EEL6aFQYk24DIrzNyB1Aj9LIs9/NyDu5zN00QFKrR6aDE7WAv1VG3sa6wWdg==
-  dependencies:
-    "@balena/dockerignore" "^1.0.2"
-    case "1.6.3"
-    fs-extra "^9.1.0"
-    ignore "^5.2.0"
-    jsonschema "^1.4.0"
-    minimatch "^3.1.2"
-    punycode "^2.1.1"
-    semver "^7.3.5"
-    yaml "1.10.2"
-
-aws-cdk-lib@^2.23.0:
+aws-cdk-lib@2.23.0, aws-cdk-lib@^2.23.0:
   version "2.23.0"
   resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.23.0.tgz#82983dd86d732096ee6e14ba43e2cd46a92d58c9"
   integrity sha512-ewUgVRnXA31yZPz/X1BfyVgzCBlPfyjadmkYQsZgT3vRE+NbddTRG4O5r+k9O46xLC41YV8ZMCnhsfPfa5VRKA==

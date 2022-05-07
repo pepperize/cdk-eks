@@ -73,7 +73,6 @@ export class EbsCsiDriver extends Addon {
       ...props,
       managedPolicy: managedPolicy,
       addonName: "aws-ebs-csi-driver",
-      serviceAccountName: "ebs-csi-controller-sa",
       version: props.version ?? EbsCsiDriverVersion.V1_5_2,
     });
   }

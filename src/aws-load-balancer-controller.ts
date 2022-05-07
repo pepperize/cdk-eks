@@ -3,7 +3,7 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
-import * as loadBalancerPolicyDocument from "./aws-load-balancer-controller-iam-policy.json";
+import * as loadBalancerPolicyDocument from "./aws-load-balancer-controller_policy.json";
 
 export interface AwsLoadBalancerControllerProps {
   readonly cluster: eks.ICluster;

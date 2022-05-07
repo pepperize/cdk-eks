@@ -1,4 +1,4 @@
-import { Stack } from "aws-cdk-lib";
+import { Duration, Stack } from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
@@ -61,6 +61,8 @@ export class AwsLoadBalancerController extends Construct {
           name: serviceAccount.serviceAccountName,
         },
       },
+      wait: true,
+      timeout: Duration.minutes(15),
     });
     chart.node.addDependency(serviceAccount, namespaceManifest);
   }

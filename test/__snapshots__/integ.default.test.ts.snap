@@ -2954,6 +2954,7 @@ def on_delete(event):
             "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
           ],
         },
+        "Timeout": "900s",
         "Values": Object {
           "Fn::Join": Array [
             "",
@@ -2975,6 +2976,7 @@ def on_delete(event):
           ],
         },
         "Version": "1.4.0",
+        "Wait": true,
       },
       "Type": "Custom::AWSCDK-EKS-HelmChart",
       "UpdateReplacePolicy": "Delete",

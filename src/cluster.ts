@@ -5,6 +5,7 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import * as kms from "aws-cdk-lib/aws-kms";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
+import {AwsLoadBalancerController} from "./aws-load-balancer-controller";
 import { CloudwatchMetrics } from "./cloudwatch-metrics";
 import { EbsCsiDriver } from "./ebs-csi-driver";
 import { EfsCsiDriver } from "./efs-csi-driver";
@@ -62,9 +63,9 @@ export class Cluster extends Construct implements ITaggable {
     });
 
     // load balancing
-    this.albController = new eks.AlbController(this, "AwsLoadBalancerController", {
+    this.albController = new AwsLoadBalancerController(this, "AwsLoadBalancerController", {
       cluster: this.resource as eks.Cluster,
-      version: eks.AlbControllerVersion.V2_4_1,
+      vpc: props.vpc,
     });
 
     // domain name

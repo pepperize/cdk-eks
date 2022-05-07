@@ -272,366 +272,7 @@ Object {
       "Type": "Custom::AWSCDK-EKS-KubernetesResource",
       "UpdateReplacePolicy": "Delete",
     },
-    "ClusterAwsLoadBalancerController96C51086": Object {
-      "DeletionPolicy": "Delete",
-      "DependsOn": Array [
-        "ClusterAwsLoadBalancerControlleralbsaConditionJson9D285936",
-        "ClusterAwsLoadBalancerControlleralbsamanifestalbsaServiceAccountResource2BE9D767",
-        "ClusterAwsLoadBalancerControlleralbsaRoleDefaultPolicy2778BB98",
-        "ClusterAwsLoadBalancerControlleralbsaRole0DF460CE",
-        "ClusterAwsAuthmanifestA75E0830",
-        "ClusterKubectlReadyBarrier7A62DA2A",
-        "ClusterOpenIdConnectProvider0FA7A7AD",
-      ],
-      "Properties": Object {
-        "Chart": "aws-load-balancer-controller",
-        "ClusterName": Object {
-          "Ref": "Cluster503F4F65",
-        },
-        "CreateNamespace": true,
-        "Namespace": "kube-system",
-        "Release": "aws-load-balancer-controller",
-        "Repository": "https://aws.github.io/eks-charts",
-        "RoleArn": Object {
-          "Fn::GetAtt": Array [
-            "ClusterCreationRoleC33A6617",
-            "Arn",
-          ],
-        },
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
-            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
-            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
-          ],
-        },
-        "Timeout": "900s",
-        "Values": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "{\\"clusterName\\":\\"",
-              Object {
-                "Ref": "Cluster503F4F65",
-              },
-              "\\",\\"serviceAccount\\":{\\"create\\":false,\\"name\\":\\"aws-load-balancer-controller\\"},\\"region\\":\\"",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              "\\",\\"vpcId\\":\\"",
-              Object {
-                "Ref": "Vpc8378EB38",
-              },
-              "\\",\\"image\\":{\\"repository\\":\\"602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller\\",\\"tag\\":\\"v2.4.1\\"}}",
-            ],
-          ],
-        },
-        "Version": "1.2.7",
-        "Wait": true,
-      },
-      "Type": "Custom::AWSCDK-EKS-HelmChart",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "ClusterAwsLoadBalancerControlleralbsaConditionJson9D285936": Object {
-      "DeletionPolicy": "Delete",
-      "Properties": Object {
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
-            "AWSCDKCfnUtilsProviderCustomResourceProviderHandlerCF82AA57",
-            "Arn",
-          ],
-        },
-        "Value": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "{\\"",
-              Object {
-                "Fn::Select": Array [
-                  1,
-                  Object {
-                    "Fn::Split": Array [
-                      ":oidc-provider/",
-                      Object {
-                        "Ref": "ClusterOpenIdConnectProvider0FA7A7AD",
-                      },
-                    ],
-                  },
-                ],
-              },
-              ":aud\\":\\"sts.amazonaws.com\\",\\"",
-              Object {
-                "Fn::Select": Array [
-                  1,
-                  Object {
-                    "Fn::Split": Array [
-                      ":oidc-provider/",
-                      Object {
-                        "Ref": "ClusterOpenIdConnectProvider0FA7A7AD",
-                      },
-                    ],
-                  },
-                ],
-              },
-              ":sub\\":\\"system:serviceaccount:kube-system:aws-load-balancer-controller\\"}",
-            ],
-          ],
-        },
-      },
-      "Type": "Custom::AWSCDKCfnJson",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "ClusterAwsLoadBalancerControlleralbsaRole0DF460CE": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRoleWithWebIdentity",
-              "Condition": Object {
-                "StringEquals": Object {
-                  "Fn::GetAtt": Array [
-                    "ClusterAwsLoadBalancerControlleralbsaConditionJson9D285936",
-                    "Value",
-                  ],
-                },
-              },
-              "Effect": "Allow",
-              "Principal": Object {
-                "Federated": Object {
-                  "Ref": "ClusterOpenIdConnectProvider0FA7A7AD",
-                },
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "ClusterAwsLoadBalancerControlleralbsaRoleDefaultPolicy2778BB98": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "iam:CreateServiceLinkedRole",
-              "Condition": Object {
-                "StringEquals": Object {
-                  "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "ec2:DescribeAccountAttributes",
-                "ec2:DescribeAddresses",
-                "ec2:DescribeAvailabilityZones",
-                "ec2:DescribeInternetGateways",
-                "ec2:DescribeVpcs",
-                "ec2:DescribeVpcPeeringConnections",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeSecurityGroups",
-                "ec2:DescribeInstances",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DescribeTags",
-                "ec2:GetCoipPoolUsage",
-                "ec2:DescribeCoipPools",
-                "elasticloadbalancing:DescribeLoadBalancers",
-                "elasticloadbalancing:DescribeLoadBalancerAttributes",
-                "elasticloadbalancing:DescribeListeners",
-                "elasticloadbalancing:DescribeListenerCertificates",
-                "elasticloadbalancing:DescribeSSLPolicies",
-                "elasticloadbalancing:DescribeRules",
-                "elasticloadbalancing:DescribeTargetGroups",
-                "elasticloadbalancing:DescribeTargetGroupAttributes",
-                "elasticloadbalancing:DescribeTargetHealth",
-                "elasticloadbalancing:DescribeTags",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "cognito-idp:DescribeUserPoolClient",
-                "acm:ListCertificates",
-                "acm:DescribeCertificate",
-                "iam:ListServerCertificates",
-                "iam:GetServerCertificate",
-                "waf-regional:GetWebACL",
-                "waf-regional:GetWebACLForResource",
-                "waf-regional:AssociateWebACL",
-                "waf-regional:DisassociateWebACL",
-                "wafv2:GetWebACL",
-                "wafv2:GetWebACLForResource",
-                "wafv2:AssociateWebACL",
-                "wafv2:DisassociateWebACL",
-                "shield:GetSubscriptionState",
-                "shield:DescribeProtection",
-                "shield:CreateProtection",
-                "shield:DeleteProtection",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:RevokeSecurityGroupIngress",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": "ec2:CreateSecurityGroup",
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": "ec2:CreateTags",
-              "Condition": Object {
-                "Null": Object {
-                  "aws:RequestTag/elbv2.k8s.aws/cluster": "false",
-                },
-                "StringEquals": Object {
-                  "ec2:CreateAction": "CreateSecurityGroup",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": "arn:aws:ec2:*:*:security-group/*",
-            },
-            Object {
-              "Action": Array [
-                "ec2:CreateTags",
-                "ec2:DeleteTags",
-              ],
-              "Condition": Object {
-                "Null": Object {
-                  "aws:RequestTag/elbv2.k8s.aws/cluster": "true",
-                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": "arn:aws:ec2:*:*:security-group/*",
-            },
-            Object {
-              "Action": Array [
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:DeleteSecurityGroup",
-              ],
-              "Condition": Object {
-                "Null": Object {
-                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:CreateLoadBalancer",
-                "elasticloadbalancing:CreateTargetGroup",
-              ],
-              "Condition": Object {
-                "Null": Object {
-                  "aws:RequestTag/elbv2.k8s.aws/cluster": "false",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:CreateListener",
-                "elasticloadbalancing:DeleteListener",
-                "elasticloadbalancing:CreateRule",
-                "elasticloadbalancing:DeleteRule",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:AddTags",
-                "elasticloadbalancing:RemoveTags",
-              ],
-              "Condition": Object {
-                "Null": Object {
-                  "aws:RequestTag/elbv2.k8s.aws/cluster": "true",
-                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": Array [
-                "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
-                "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
-                "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
-              ],
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:AddTags",
-                "elasticloadbalancing:RemoveTags",
-              ],
-              "Effect": "Allow",
-              "Resource": Array [
-                "arn:aws:elasticloadbalancing:*:*:listener/net/*/*/*",
-                "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*",
-                "arn:aws:elasticloadbalancing:*:*:listener-rule/net/*/*/*",
-                "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*",
-              ],
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:ModifyLoadBalancerAttributes",
-                "elasticloadbalancing:SetIpAddressType",
-                "elasticloadbalancing:SetSecurityGroups",
-                "elasticloadbalancing:SetSubnets",
-                "elasticloadbalancing:DeleteLoadBalancer",
-                "elasticloadbalancing:ModifyTargetGroup",
-                "elasticloadbalancing:ModifyTargetGroupAttributes",
-                "elasticloadbalancing:DeleteTargetGroup",
-              ],
-              "Condition": Object {
-                "Null": Object {
-                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
-                },
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:RegisterTargets",
-                "elasticloadbalancing:DeregisterTargets",
-              ],
-              "Effect": "Allow",
-              "Resource": "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
-            },
-            Object {
-              "Action": Array [
-                "elasticloadbalancing:SetWebAcl",
-                "elasticloadbalancing:ModifyListener",
-                "elasticloadbalancing:AddListenerCertificates",
-                "elasticloadbalancing:RemoveListenerCertificates",
-                "elasticloadbalancing:ModifyRule",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "ClusterAwsLoadBalancerControlleralbsaRoleDefaultPolicy2778BB98",
-        "Roles": Array [
-          Object {
-            "Ref": "ClusterAwsLoadBalancerControlleralbsaRole0DF460CE",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
-    },
-    "ClusterAwsLoadBalancerControlleralbsamanifestalbsaServiceAccountResource2BE9D767": Object {
+    "ClusterAwsLoadBalancerControllerNamespace2739905F": Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "ClusterKubectlReadyBarrier7A62DA2A",
@@ -640,22 +281,8 @@ Object {
         "ClusterName": Object {
           "Ref": "Cluster503F4F65",
         },
-        "Manifest": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"ServiceAccount\\",\\"metadata\\":{\\"name\\":\\"aws-load-balancer-controller\\",\\"namespace\\":\\"kube-system\\",\\"labels\\":{\\"aws.cdk.eks/prune-c85c8c0604640d054d55df9b73f51316b54313f621\\":\\"\\",\\"app.kubernetes.io/name\\":\\"aws-load-balancer-controller\\"},\\"annotations\\":{\\"eks.amazonaws.com/role-arn\\":\\"",
-              Object {
-                "Fn::GetAtt": Array [
-                  "ClusterAwsLoadBalancerControlleralbsaRole0DF460CE",
-                  "Arn",
-                ],
-              },
-              "\\"}}}]",
-            ],
-          ],
-        },
-        "PruneLabel": "aws.cdk.eks/prune-c85c8c0604640d054d55df9b73f51316b54313f621",
+        "Manifest": "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"Namespace\\",\\"metadata\\":{\\"name\\":\\"ingress\\",\\"labels\\":{\\"aws.cdk.eks/prune-c85305f94990b022a86222d5c6c2b46aed29ab7b14\\":\\"\\"}}}]",
+        "PruneLabel": "aws.cdk.eks/prune-c85305f94990b022a86222d5c6c2b46aed29ab7b14",
         "RoleArn": Object {
           "Fn::GetAtt": Array [
             "ClusterCreationRoleC33A6617",
@@ -2955,6 +2582,413 @@ def on_delete(event):
         ],
       },
       "Type": "AWS::IAM::Role",
+    },
+    "ClusterServiceAccountConditionJson057D2B70": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterAwsLoadBalancerControllerNamespace2739905F",
+      ],
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AWSCDKCfnUtilsProviderCustomResourceProviderHandlerCF82AA57",
+            "Arn",
+          ],
+        },
+        "Value": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"",
+              Object {
+                "Fn::Select": Array [
+                  1,
+                  Object {
+                    "Fn::Split": Array [
+                      ":oidc-provider/",
+                      Object {
+                        "Ref": "ClusterOpenIdConnectProvider0FA7A7AD",
+                      },
+                    ],
+                  },
+                ],
+              },
+              ":aud\\":\\"sts.amazonaws.com\\",\\"",
+              Object {
+                "Fn::Select": Array [
+                  1,
+                  Object {
+                    "Fn::Split": Array [
+                      ":oidc-provider/",
+                      Object {
+                        "Ref": "ClusterOpenIdConnectProvider0FA7A7AD",
+                      },
+                    ],
+                  },
+                ],
+              },
+              ":sub\\":\\"system:serviceaccount:ingress:aws-load-balancer-controller\\"}",
+            ],
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDKCfnJson",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ClusterServiceAccountRole77004D76": Object {
+      "DependsOn": Array [
+        "ClusterAwsLoadBalancerControllerNamespace2739905F",
+      ],
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": Object {
+                "StringEquals": Object {
+                  "Fn::GetAtt": Array [
+                    "ClusterServiceAccountConditionJson057D2B70",
+                    "Value",
+                  ],
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "Federated": Object {
+                  "Ref": "ClusterOpenIdConnectProvider0FA7A7AD",
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ClusterServiceAccountRoleDefaultPolicy8AFB8B0A": Object {
+      "DependsOn": Array [
+        "ClusterAwsLoadBalancerControllerNamespace2739905F",
+      ],
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "iam:CreateServiceLinkedRole",
+              "Condition": Object {
+                "StringEquals": Object {
+                  "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeAddresses",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeVpcPeeringConnections",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeInstances",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeTags",
+                "ec2:GetCoipPoolUsage",
+                "ec2:DescribeCoipPools",
+                "elasticloadbalancing:DescribeLoadBalancers",
+                "elasticloadbalancing:DescribeLoadBalancerAttributes",
+                "elasticloadbalancing:DescribeListeners",
+                "elasticloadbalancing:DescribeListenerCertificates",
+                "elasticloadbalancing:DescribeSSLPolicies",
+                "elasticloadbalancing:DescribeRules",
+                "elasticloadbalancing:DescribeTargetGroups",
+                "elasticloadbalancing:DescribeTargetGroupAttributes",
+                "elasticloadbalancing:DescribeTargetHealth",
+                "elasticloadbalancing:DescribeTags",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "cognito-idp:DescribeUserPoolClient",
+                "acm:ListCertificates",
+                "acm:DescribeCertificate",
+                "iam:ListServerCertificates",
+                "iam:GetServerCertificate",
+                "waf-regional:GetWebACL",
+                "waf-regional:GetWebACLForResource",
+                "waf-regional:AssociateWebACL",
+                "waf-regional:DisassociateWebACL",
+                "wafv2:GetWebACL",
+                "wafv2:GetWebACLForResource",
+                "wafv2:AssociateWebACL",
+                "wafv2:DisassociateWebACL",
+                "shield:GetSubscriptionState",
+                "shield:DescribeProtection",
+                "shield:CreateProtection",
+                "shield:DeleteProtection",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:RevokeSecurityGroupIngress",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "ec2:CreateSecurityGroup",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "ec2:CreateTags",
+              "Condition": Object {
+                "Null": Object {
+                  "aws:RequestTag/elbv2.k8s.aws/cluster": "false",
+                },
+                "StringEquals": Object {
+                  "ec2:CreateAction": "CreateSecurityGroup",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "arn:aws:ec2:*:*:security-group/*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:CreateTags",
+                "ec2:DeleteTags",
+              ],
+              "Condition": Object {
+                "Null": Object {
+                  "aws:RequestTag/elbv2.k8s.aws/cluster": "true",
+                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "arn:aws:ec2:*:*:security-group/*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:DeleteSecurityGroup",
+              ],
+              "Condition": Object {
+                "Null": Object {
+                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:CreateLoadBalancer",
+                "elasticloadbalancing:CreateTargetGroup",
+              ],
+              "Condition": Object {
+                "Null": Object {
+                  "aws:RequestTag/elbv2.k8s.aws/cluster": "false",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:CreateListener",
+                "elasticloadbalancing:DeleteListener",
+                "elasticloadbalancing:CreateRule",
+                "elasticloadbalancing:DeleteRule",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:AddTags",
+                "elasticloadbalancing:RemoveTags",
+              ],
+              "Condition": Object {
+                "Null": Object {
+                  "aws:RequestTag/elbv2.k8s.aws/cluster": "true",
+                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Array [
+                "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+                "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
+                "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+              ],
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:AddTags",
+                "elasticloadbalancing:RemoveTags",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                "arn:aws:elasticloadbalancing:*:*:listener/net/*/*/*",
+                "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*",
+                "arn:aws:elasticloadbalancing:*:*:listener-rule/net/*/*/*",
+                "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*",
+              ],
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:ModifyLoadBalancerAttributes",
+                "elasticloadbalancing:SetIpAddressType",
+                "elasticloadbalancing:SetSecurityGroups",
+                "elasticloadbalancing:SetSubnets",
+                "elasticloadbalancing:DeleteLoadBalancer",
+                "elasticloadbalancing:ModifyTargetGroup",
+                "elasticloadbalancing:ModifyTargetGroupAttributes",
+                "elasticloadbalancing:DeleteTargetGroup",
+              ],
+              "Condition": Object {
+                "Null": Object {
+                  "aws:ResourceTag/elbv2.k8s.aws/cluster": "false",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:RegisterTargets",
+                "elasticloadbalancing:DeregisterTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+            },
+            Object {
+              "Action": Array [
+                "elasticloadbalancing:SetWebAcl",
+                "elasticloadbalancing:ModifyListener",
+                "elasticloadbalancing:AddListenerCertificates",
+                "elasticloadbalancing:RemoveListenerCertificates",
+                "elasticloadbalancing:ModifyRule",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ClusterServiceAccountRoleDefaultPolicy8AFB8B0A",
+        "Roles": Array [
+          Object {
+            "Ref": "ClusterServiceAccountRole77004D76",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ClusterServiceAccountmanifestServiceAccountServiceAccountResource08E7D81A": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterAwsLoadBalancerControllerNamespace2739905F",
+        "ClusterKubectlReadyBarrier7A62DA2A",
+      ],
+      "Properties": Object {
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "Manifest": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"ServiceAccount\\",\\"metadata\\":{\\"name\\":\\"aws-load-balancer-controller\\",\\"namespace\\":\\"ingress\\",\\"labels\\":{\\"aws.cdk.eks/prune-c8d58e5fd5a39f48374b657279367e34c0627d88c2\\":\\"\\",\\"app.kubernetes.io/name\\":\\"aws-load-balancer-controller\\"},\\"annotations\\":{\\"eks.amazonaws.com/role-arn\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "ClusterServiceAccountRole77004D76",
+                  "Arn",
+                ],
+              },
+              "\\"}}}]",
+            ],
+          ],
+        },
+        "PruneLabel": "aws.cdk.eks/prune-c8d58e5fd5a39f48374b657279367e34c0627d88c2",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDK-EKS-KubernetesResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ClusterchartChart061EBB97": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterAwsLoadBalancerControllerNamespace2739905F",
+        "ClusterKubectlReadyBarrier7A62DA2A",
+        "ClusterServiceAccountConditionJson057D2B70",
+        "ClusterServiceAccountmanifestServiceAccountServiceAccountResource08E7D81A",
+        "ClusterServiceAccountRoleDefaultPolicy8AFB8B0A",
+        "ClusterServiceAccountRole77004D76",
+      ],
+      "Properties": Object {
+        "Chart": "aws-load-balancer-controller",
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "CreateNamespace": true,
+        "Namespace": "ingress",
+        "Release": "aws-load-balancer-controller",
+        "Repository": "https://aws.github.io/eks-charts",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+        "Values": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"clusterName\\":\\"",
+              Object {
+                "Ref": "Cluster503F4F65",
+              },
+              "\\",\\"region\\":\\"",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              "\\",\\"vpcId\\":\\"",
+              Object {
+                "Ref": "Vpc8378EB38",
+              },
+              "\\",\\"serviceAccount\\":{\\"create\\":false,\\"name\\":\\"aws-load-balancer-controller\\"}}",
+            ],
+          ],
+        },
+        "Version": "1.4.0",
+      },
+      "Type": "Custom::AWSCDK-EKS-HelmChart",
+      "UpdateReplacePolicy": "Delete",
     },
     "CustomAWSCDKOpenIdConnectProviderCustomResourceProviderHandlerF2C543E0": Object {
       "DependsOn": Array [

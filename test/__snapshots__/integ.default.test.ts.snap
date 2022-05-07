@@ -1923,15 +1923,15 @@ Object {
                   "Arn",
                 ],
               },
-              "\\"}},\\"aws\\":{\\"defaultInstanceProfile\\":\\"KarpenterNodeInstanceProfile-",
+              "\\"}},\\"aws\\":{\\"defaultInstanceProfile\\":\\"",
               Object {
-                "Ref": "Cluster503F4F65",
+                "Ref": "ClusterKarpenterInstanceProfileEAD56749",
               },
               "\\"}}",
             ],
           ],
         },
-        "Version": "0.8.2",
+        "Version": "0.9.1",
         "Wait": true,
       },
       "Type": "Custom::AWSCDK-EKS-HelmChart",
@@ -1939,17 +1939,6 @@ Object {
     },
     "ClusterKarpenterInstanceProfileEAD56749": Object {
       "Properties": Object {
-        "InstanceProfileName": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "KarpenterNodeInstanceProfile-",
-              Object {
-                "Ref": "Cluster503F4F65",
-              },
-            ],
-          ],
-        },
         "Path": "/",
         "Roles": Array [
           Object {
@@ -2265,7 +2254,7 @@ def on_delete(event):
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "885e74c18034f7d2833ec7129bb76a442e75d84f9c21ce7990bbb3aea67ab779.zip",
+          "S3Key": "a25ad9c0d11729e2a901249c21b3095a071174c6fc98296269154dcebbb42a08.zip",
         },
         "Description": "AWS CDK resource provider framework - onEvent (Default/Cluster/Karpenter/TagSubnets/Provider)",
         "Environment": Object {
@@ -3628,7 +3617,7 @@ def on_delete(event):
               Object {
                 "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
               },
-              "/b5f2a393f4f4580a661f34b05529af4bad16792eeb9add7f75a537c662ce0f5d.json",
+              "/3bf715dc588dc4164c1d5ced2add015ca733555128639d35d0c45a0df59a938d.json",
             ],
           ],
         },
@@ -3681,7 +3670,7 @@ def on_delete(event):
               Object {
                 "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
               },
-              "/62c228b456501f59e721a2731e99aee1ce672abb17e1de2bbf5f0eaa27c14d25.json",
+              "/797394332a9b4ccb9824339a1f5390f6de0e12b00758c36bef0d6a06994ee140.json",
             ],
           ],
         },

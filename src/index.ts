@@ -1,4 +1,5 @@
 export * from "./addon";
+export * from "./aws-load-balancer-controller";
 export * from "./cloudwatch-metrics";
 export * from "./cluster";
 export * from "./ebs-csi-driver";

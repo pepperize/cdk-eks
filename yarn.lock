@@ -807,9 +807,9 @@
   integrity sha512-wANk6fBrUwdpY4isjWrKTufkrXdu1D2YHCot2fD/DfWxF5sMrVSA+KN7ydckvaTCh0HiqX9IVl0L5/ZoXg5M7w==
 
 "@types/node@^12":
-  version "12.20.49"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.49.tgz#97897a33dd145490f514bbcbccefc178534e360f"
-  integrity sha512-5e6QNb9bkeh4Hni4ktLqUZuUqnGTX/kou2aZkXyxtuYaHXgBm+In1SHR9V+7kDzWzjB08KC2uqt2doDi7cuAAA==
+  version "12.20.50"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.50.tgz#14ba5198f1754ffd0472a2f84ab433b45ee0b65e"
+  integrity sha512-+9axpWx2b2JCVovr7Ilgt96uc6C1zBKOQMpGtRbWT9IoR/8ue32GGMfGA4woP8QyP2gBs6GQWEVM3tCybGCxDA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -1376,9 +1376,9 @@ cdk-karpenter@^1.6.3:
     aws-cdk-lib "^2.20.0"
 
 cdk-nag@^2.12.31:
-  version "2.12.37"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.12.37.tgz#06b1aa2ab1a02efa1e821d22bb92ebfcdeab4f1b"
-  integrity sha512-kB9R44kHCQ/RjIUgeVdD7g/2/+rAcSNqKnH38iiWgeANPmwhihKRcTb5OUCESFXrA5/o5GaAh6W8nXCo6Tx9DA==
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.13.1.tgz#0a308aaafe73539109c1bb83729f010e703371bb"
+  integrity sha512-CV2IXCDgTKsX7OPXE49J9Yoo4I2tslZ+maJoT19HDdcnHn9WqHmFe69G8WmXd3SzPma2L4hN67j45f4BpgEIhQ==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -4404,9 +4404,9 @@ npm-bundled@^1.1.1, npm-bundled@^1.1.2:
     npm-normalize-package-bin "^1.0.1"
 
 npm-check-updates@^12:
-  version "12.5.9"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-12.5.9.tgz#7057c78f9f62be12b834ec1eee5c144d972ad795"
-  integrity sha512-l9iOvD7EsQb96gFJL45V01YG6bP8+dmobYnSguvehPuNwgdWNMrE8RC8bSfURX5iUmX4bkobN4T8XMHXN9GMHA==
+  version "12.5.11"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-12.5.11.tgz#c594902b21af8c251a5ebf12686143b0d2f06356"
+  integrity sha512-uS3yYYK/F1VvZlJRymuCkq+MY2R7v/WlORo5WPUTYx+1OwkqeDMC/CEEGfCN7ATwT2M+JxVVKk9Gq/TGiZjJOw==
   dependencies:
     chalk "^4.1.2"
     cint "^8.2.1"

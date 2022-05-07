@@ -1,9 +1,9 @@
 import { Names, Stack } from "aws-cdk-lib";
 import * as eks from "aws-cdk-lib/aws-eks";
 import { Construct } from "constructs";
-import { Addon, AddonVersion } from "./addon";
+import { Addon, IAddonVersion } from "./addon";
 
-export class VpcCniVersion implements AddonVersion {
+export class VpcCniVersion implements IAddonVersion {
   /**
    * v1.10.1
    */

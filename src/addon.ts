@@ -7,7 +7,7 @@ export enum ResolveConflicts {
   OVERWRITE = "OVERWRITE",
 }
 
-export interface AddonVersion {
+export interface IAddonVersion {
   readonly version: string;
 }
 
@@ -27,7 +27,7 @@ export interface AddonProps {
   /**
    * The version of the addon to be deployed
    */
-  readonly version: AddonVersion;
+  readonly version: IAddonVersion;
 
   /**
    * The managed policy to add to the service account's role

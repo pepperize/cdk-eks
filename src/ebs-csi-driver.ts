@@ -2,9 +2,9 @@ import { Names, Stack } from "aws-cdk-lib";
 import * as eks from "aws-cdk-lib/aws-eks";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
-import { Addon, AddonVersion } from "./addon";
+import { Addon, IAddonVersion } from "./addon";
 
-export class EbsCsiDriverVersion implements AddonVersion {
+export class EbsCsiDriverVersion implements IAddonVersion {
   /**
    * v1.5.2
    */

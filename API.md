@@ -2,6 +2,116 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
+### Addon <a name="Addon" id="@pepperize/cdk-eks.Addon"></a>
+
+#### Initializers <a name="Initializers" id="@pepperize/cdk-eks.Addon.Initializer"></a>
+
+```typescript
+import { Addon } from '@pepperize/cdk-eks'
+
+new Addon(scope: Construct, id: string, props: AddonProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.Addon.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.Addon.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.Addon.Initializer.parameter.props">props</a></code> | <code><a href="#@pepperize/cdk-eks.AddonProps">AddonProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.Addon.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@pepperize/cdk-eks.Addon.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.Addon.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.AddonProps">AddonProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.Addon.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@pepperize/cdk-eks.Addon.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.Addon.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.Addon.isConstruct"></a>
+
+```typescript
+import { Addon } from '@pepperize/cdk-eks'
+
+Addon.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.Addon.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.Addon.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@pepperize/cdk-eks.Addon.property.serviceAccount">serviceAccount</a></code> | <code>aws-cdk-lib.aws_eks.ServiceAccount</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@pepperize/cdk-eks.Addon.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `serviceAccount`<sup>Optional</sup> <a name="serviceAccount" id="@pepperize/cdk-eks.Addon.property.serviceAccount"></a>
+
+```typescript
+public readonly serviceAccount: ServiceAccount;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ServiceAccount
+
+---
+
+
 ### CloudwatchMetrics <a name="CloudwatchMetrics" id="@pepperize/cdk-eks.CloudwatchMetrics"></a>
 
 Set up Container Insights to collect cluster metrics.
@@ -307,6 +417,269 @@ TagManager to set, remove and format tags.
 ---
 
 
+### EbsCsiDriver <a name="EbsCsiDriver" id="@pepperize/cdk-eks.EbsCsiDriver"></a>
+
+https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html.
+
+#### Initializers <a name="Initializers" id="@pepperize/cdk-eks.EbsCsiDriver.Initializer"></a>
+
+```typescript
+import { EbsCsiDriver } from '@pepperize/cdk-eks'
+
+new EbsCsiDriver(scope: Construct, id: string, props: EbsCsiDriverProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.Initializer.parameter.props">props</a></code> | <code><a href="#@pepperize/cdk-eks.EbsCsiDriverProps">EbsCsiDriverProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.EbsCsiDriver.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@pepperize/cdk-eks.EbsCsiDriver.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.EbsCsiDriver.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.EbsCsiDriverProps">EbsCsiDriverProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@pepperize/cdk-eks.EbsCsiDriver.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.create">create</a></code> | Create the driver construct associated with this cluster and scope. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.EbsCsiDriver.isConstruct"></a>
+
+```typescript
+import { EbsCsiDriver } from '@pepperize/cdk-eks'
+
+EbsCsiDriver.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.EbsCsiDriver.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `create` <a name="create" id="@pepperize/cdk-eks.EbsCsiDriver.create"></a>
+
+```typescript
+import { EbsCsiDriver } from '@pepperize/cdk-eks'
+
+EbsCsiDriver.create(scope: Construct, props: EbsCsiDriverProps)
+```
+
+Create the driver construct associated with this cluster and scope.
+
+Singleton per stack/cluster.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.EbsCsiDriver.create.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.EbsCsiDriver.create.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.EbsCsiDriverProps">EbsCsiDriverProps</a>
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.property.serviceAccount">serviceAccount</a></code> | <code>aws-cdk-lib.aws_eks.ServiceAccount</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@pepperize/cdk-eks.EbsCsiDriver.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `serviceAccount`<sup>Optional</sup> <a name="serviceAccount" id="@pepperize/cdk-eks.EbsCsiDriver.property.serviceAccount"></a>
+
+```typescript
+public readonly serviceAccount: ServiceAccount;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ServiceAccount
+
+---
+
+
+### EfsCsiDriver <a name="EfsCsiDriver" id="@pepperize/cdk-eks.EfsCsiDriver"></a>
+
+https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html#efs-install-driver.
+
+#### Initializers <a name="Initializers" id="@pepperize/cdk-eks.EfsCsiDriver.Initializer"></a>
+
+```typescript
+import { EfsCsiDriver } from '@pepperize/cdk-eks'
+
+new EfsCsiDriver(scope: Construct, id: string, props: EfsCsiDriverProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.Initializer.parameter.props">props</a></code> | <code><a href="#@pepperize/cdk-eks.EfsCsiDriverProps">EfsCsiDriverProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.EfsCsiDriver.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@pepperize/cdk-eks.EfsCsiDriver.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.EfsCsiDriver.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.EfsCsiDriverProps">EfsCsiDriverProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@pepperize/cdk-eks.EfsCsiDriver.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.create">create</a></code> | Create the driver construct associated with this cluster and scope. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.EfsCsiDriver.isConstruct"></a>
+
+```typescript
+import { EfsCsiDriver } from '@pepperize/cdk-eks'
+
+EfsCsiDriver.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.EfsCsiDriver.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `create` <a name="create" id="@pepperize/cdk-eks.EfsCsiDriver.create"></a>
+
+```typescript
+import { EfsCsiDriver } from '@pepperize/cdk-eks'
+
+EfsCsiDriver.create(scope: Construct, props: EfsCsiDriverProps)
+```
+
+Create the driver construct associated with this cluster and scope.
+
+Singleton per stack/cluster.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.EfsCsiDriver.create.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.EfsCsiDriver.create.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.EfsCsiDriverProps">EfsCsiDriverProps</a>
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@pepperize/cdk-eks.EfsCsiDriver.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+
 ### ExternalDns <a name="ExternalDns" id="@pepperize/cdk-eks.ExternalDns"></a>
 
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.ExternalDns.Initializer"></a>
@@ -604,7 +977,252 @@ The tree node.
 ---
 
 
+### VpcCni <a name="VpcCni" id="@pepperize/cdk-eks.VpcCni"></a>
+
+Amazon EKS supports native VPC networking with the Amazon VPC Container Network Interface (CNI) plugin for Kubernetes.
+
+Using this plugin allows Kubernetes pods to have the same IP address inside the pod as they do on the VPC network.
+
+> [https://docs.aws.amazon.com/eks/latest/userguide/pod-networking.html](https://docs.aws.amazon.com/eks/latest/userguide/pod-networking.html)
+
+#### Initializers <a name="Initializers" id="@pepperize/cdk-eks.VpcCni.Initializer"></a>
+
+```typescript
+import { VpcCni } from '@pepperize/cdk-eks'
+
+new VpcCni(scope: Construct, id: string, props: VpcCniProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.Initializer.parameter.props">props</a></code> | <code><a href="#@pepperize/cdk-eks.VpcCniProps">VpcCniProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.VpcCni.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@pepperize/cdk-eks.VpcCni.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.VpcCni.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.VpcCniProps">VpcCniProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@pepperize/cdk-eks.VpcCni.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.create">create</a></code> | Create the driver construct associated with this cluster and scope. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.VpcCni.isConstruct"></a>
+
+```typescript
+import { VpcCni } from '@pepperize/cdk-eks'
+
+VpcCni.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.VpcCni.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `create` <a name="create" id="@pepperize/cdk-eks.VpcCni.create"></a>
+
+```typescript
+import { VpcCni } from '@pepperize/cdk-eks'
+
+VpcCni.create(scope: Construct, props: VpcCniProps)
+```
+
+Create the driver construct associated with this cluster and scope.
+
+Singleton per stack/cluster.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.VpcCni.create.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.VpcCni.create.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.VpcCniProps">VpcCniProps</a>
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.property.serviceAccount">serviceAccount</a></code> | <code>aws-cdk-lib.aws_eks.ServiceAccount</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@pepperize/cdk-eks.VpcCni.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `serviceAccount`<sup>Optional</sup> <a name="serviceAccount" id="@pepperize/cdk-eks.VpcCni.property.serviceAccount"></a>
+
+```typescript
+public readonly serviceAccount: ServiceAccount;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ServiceAccount
+
+---
+
+
 ## Structs <a name="Structs" id="Structs"></a>
+
+### AddonProps <a name="AddonProps" id="@pepperize/cdk-eks.AddonProps"></a>
+
+#### Initializer <a name="Initializer" id="@pepperize/cdk-eks.AddonProps.Initializer"></a>
+
+```typescript
+import { AddonProps } from '@pepperize/cdk-eks'
+
+const addonProps: AddonProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.addonName">addonName</a></code> | <code>string</code> | The name of the addon. |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_eks.ICluster</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.version">version</a></code> | <code><a href="#@pepperize/cdk-eks.IAddonVersion">IAddonVersion</a></code> | The version of the addon to be deployed. |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.managedPolicy">managedPolicy</a></code> | <code>aws-cdk-lib.aws_iam.IManagedPolicy</code> | The managed policy to add to the service account's role. |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.namespace">namespace</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.resolveConflicts">resolveConflicts</a></code> | <code><a href="#@pepperize/cdk-eks.ResolveConflicts">ResolveConflicts</a></code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AddonProps.property.serviceAccountName">serviceAccountName</a></code> | <code>string</code> | The name of the service account for which to create a role. |
+
+---
+
+##### `addonName`<sup>Required</sup> <a name="addonName" id="@pepperize/cdk-eks.AddonProps.property.addonName"></a>
+
+```typescript
+public readonly addonName: string;
+```
+
+- *Type:* string
+
+The name of the addon.
+
+---
+
+##### `cluster`<sup>Required</sup> <a name="cluster" id="@pepperize/cdk-eks.AddonProps.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ICluster
+
+---
+
+##### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.AddonProps.property.version"></a>
+
+```typescript
+public readonly version: IAddonVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.IAddonVersion">IAddonVersion</a>
+
+The version of the addon to be deployed.
+
+---
+
+##### `managedPolicy`<sup>Optional</sup> <a name="managedPolicy" id="@pepperize/cdk-eks.AddonProps.property.managedPolicy"></a>
+
+```typescript
+public readonly managedPolicy: IManagedPolicy;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IManagedPolicy
+
+The managed policy to add to the service account's role.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="@pepperize/cdk-eks.AddonProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* string
+- *Default:* kube-system
+
+---
+
+##### `resolveConflicts`<sup>Optional</sup> <a name="resolveConflicts" id="@pepperize/cdk-eks.AddonProps.property.resolveConflicts"></a>
+
+```typescript
+public readonly resolveConflicts: ResolveConflicts;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.ResolveConflicts">ResolveConflicts</a>
+- *Default:* 'OVERWRITE'
+
+---
+
+##### `serviceAccountName`<sup>Optional</sup> <a name="serviceAccountName" id="@pepperize/cdk-eks.AddonProps.property.serviceAccountName"></a>
+
+```typescript
+public readonly serviceAccountName: string;
+```
+
+- *Type:* string
+
+The name of the service account for which to create a role.
+
+---
 
 ### CloudwatchMetricsProps <a name="CloudwatchMetricsProps" id="@pepperize/cdk-eks.CloudwatchMetricsProps"></a>
 
@@ -715,6 +1333,142 @@ public readonly clusterName: string;
 ```
 
 - *Type:* string
+
+---
+
+### EbsCsiDriverProps <a name="EbsCsiDriverProps" id="@pepperize/cdk-eks.EbsCsiDriverProps"></a>
+
+#### Initializer <a name="Initializer" id="@pepperize/cdk-eks.EbsCsiDriverProps.Initializer"></a>
+
+```typescript
+import { EbsCsiDriverProps } from '@pepperize/cdk-eks'
+
+const ebsCsiDriverProps: EbsCsiDriverProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverProps.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_eks.ICluster</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverProps.property.namespace">namespace</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverProps.property.version">version</a></code> | <code><a href="#@pepperize/cdk-eks.EbsCsiDriverVersion">EbsCsiDriverVersion</a></code> | *No description.* |
+
+---
+
+##### `cluster`<sup>Required</sup> <a name="cluster" id="@pepperize/cdk-eks.EbsCsiDriverProps.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ICluster
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="@pepperize/cdk-eks.EbsCsiDriverProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* string
+- *Default:* kube-system
+
+---
+
+##### `version`<sup>Optional</sup> <a name="version" id="@pepperize/cdk-eks.EbsCsiDriverProps.property.version"></a>
+
+```typescript
+public readonly version: EbsCsiDriverVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.EbsCsiDriverVersion">EbsCsiDriverVersion</a>
+- *Default:* v1.5.2
+
+---
+
+### EfsCsiDriverProps <a name="EfsCsiDriverProps" id="@pepperize/cdk-eks.EfsCsiDriverProps"></a>
+
+#### Initializer <a name="Initializer" id="@pepperize/cdk-eks.EfsCsiDriverProps.Initializer"></a>
+
+```typescript
+import { EfsCsiDriverProps } from '@pepperize/cdk-eks'
+
+const efsCsiDriverProps: EfsCsiDriverProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverProps.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_eks.ICluster</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverProps.property.namespace">namespace</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverProps.property.policy">policy</a></code> | <code>any</code> | A custom iam policy document used for custom version. |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverProps.property.repository">repository</a></code> | <code>string</code> | The repository to pull the driver image from. |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverProps.property.version">version</a></code> | <code><a href="#@pepperize/cdk-eks.EfsCsiDriverVersion">EfsCsiDriverVersion</a></code> | *No description.* |
+
+---
+
+##### `cluster`<sup>Required</sup> <a name="cluster" id="@pepperize/cdk-eks.EfsCsiDriverProps.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ICluster
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="@pepperize/cdk-eks.EfsCsiDriverProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* string
+- *Default:* kube-system
+
+---
+
+##### `policy`<sup>Optional</sup> <a name="policy" id="@pepperize/cdk-eks.EfsCsiDriverProps.property.policy"></a>
+
+```typescript
+public readonly policy: any;
+```
+
+- *Type:* any
+- *Default:* undefined
+
+A custom iam policy document used for custom version.
+
+---
+
+##### `repository`<sup>Optional</sup> <a name="repository" id="@pepperize/cdk-eks.EfsCsiDriverProps.property.repository"></a>
+
+```typescript
+public readonly repository: string;
+```
+
+- *Type:* string
+- *Default:* '602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/aws-efs-csi-driver'
+
+The repository to pull the driver image from.
+
+Note that the default repository works for most regions, but not all.
+
+> [https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html.](https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html.)
+
+---
+
+##### `version`<sup>Optional</sup> <a name="version" id="@pepperize/cdk-eks.EfsCsiDriverProps.property.version"></a>
+
+```typescript
+public readonly version: EfsCsiDriverVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.EfsCsiDriverVersion">EfsCsiDriverVersion</a>
+- *Default:* v1.3.2
 
 ---
 
@@ -851,5 +1605,387 @@ public readonly namespace: string;
 
 ---
 
+### VpcCniProps <a name="VpcCniProps" id="@pepperize/cdk-eks.VpcCniProps"></a>
 
+#### Initializer <a name="Initializer" id="@pepperize/cdk-eks.VpcCniProps.Initializer"></a>
+
+```typescript
+import { VpcCniProps } from '@pepperize/cdk-eks'
+
+const vpcCniProps: VpcCniProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCniProps.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_eks.ICluster</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.VpcCniProps.property.namespace">namespace</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.VpcCniProps.property.version">version</a></code> | <code><a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a></code> | *No description.* |
+
+---
+
+##### `cluster`<sup>Required</sup> <a name="cluster" id="@pepperize/cdk-eks.VpcCniProps.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ICluster
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="@pepperize/cdk-eks.VpcCniProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* string
+- *Default:* kube-system
+
+---
+
+##### `version`<sup>Optional</sup> <a name="version" id="@pepperize/cdk-eks.VpcCniProps.property.version"></a>
+
+```typescript
+public readonly version: VpcCniVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a>
+- *Default:* v1.10.2
+
+---
+
+## Classes <a name="Classes" id="Classes"></a>
+
+### EbsCsiDriverVersion <a name="EbsCsiDriverVersion" id="@pepperize/cdk-eks.EbsCsiDriverVersion"></a>
+
+- *Implements:* <a href="#@pepperize/cdk-eks.IAddonVersion">IAddonVersion</a>
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverVersion.of">of</a></code> | Specify a custom version. |
+
+---
+
+##### `of` <a name="of" id="@pepperize/cdk-eks.EbsCsiDriverVersion.of"></a>
+
+```typescript
+import { EbsCsiDriverVersion } from '@pepperize/cdk-eks'
+
+EbsCsiDriverVersion.of(version: string)
+```
+
+Specify a custom version.
+
+Use this if the version you need is not available in one of the predefined versions.
+
+###### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.EbsCsiDriverVersion.of.parameter.version"></a>
+
+- *Type:* string
+
+The version number.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverVersion.property.custom">custom</a></code> | <code>boolean</code> | Whether it's a custom version. |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverVersion.property.version">version</a></code> | <code>string</code> | The version string. |
+
+---
+
+##### `custom`<sup>Required</sup> <a name="custom" id="@pepperize/cdk-eks.EbsCsiDriverVersion.property.custom"></a>
+
+```typescript
+public readonly custom: boolean;
+```
+
+- *Type:* boolean
+
+Whether it's a custom version.
+
+---
+
+##### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.EbsCsiDriverVersion.property.version"></a>
+
+```typescript
+public readonly version: string;
+```
+
+- *Type:* string
+
+The version string.
+
+---
+
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriverVersion.property.V1_5_2">V1_5_2</a></code> | <code><a href="#@pepperize/cdk-eks.EbsCsiDriverVersion">EbsCsiDriverVersion</a></code> | v1.5.2. |
+
+---
+
+##### `V1_5_2`<sup>Required</sup> <a name="V1_5_2" id="@pepperize/cdk-eks.EbsCsiDriverVersion.property.V1_5_2"></a>
+
+```typescript
+public readonly V1_5_2: EbsCsiDriverVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.EbsCsiDriverVersion">EbsCsiDriverVersion</a>
+
+v1.5.2.
+
+---
+
+### EfsCsiDriverVersion <a name="EfsCsiDriverVersion" id="@pepperize/cdk-eks.EfsCsiDriverVersion"></a>
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverVersion.of">of</a></code> | Specify a custom version. |
+
+---
+
+##### `of` <a name="of" id="@pepperize/cdk-eks.EfsCsiDriverVersion.of"></a>
+
+```typescript
+import { EfsCsiDriverVersion } from '@pepperize/cdk-eks'
+
+EfsCsiDriverVersion.of(version: string)
+```
+
+Specify a custom version.
+
+Use this if the version you need is not available in one of the predefined versions.
+Note that in this case, you will also need to provide an IAM policy in the driver options.
+
+###### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.EfsCsiDriverVersion.of.parameter.version"></a>
+
+- *Type:* string
+
+The version number.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverVersion.property.custom">custom</a></code> | <code>boolean</code> | Whether it's a custom version. |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverVersion.property.version">version</a></code> | <code>string</code> | The version string. |
+
+---
+
+##### `custom`<sup>Required</sup> <a name="custom" id="@pepperize/cdk-eks.EfsCsiDriverVersion.property.custom"></a>
+
+```typescript
+public readonly custom: boolean;
+```
+
+- *Type:* boolean
+
+Whether it's a custom version.
+
+---
+
+##### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.EfsCsiDriverVersion.property.version"></a>
+
+```typescript
+public readonly version: string;
+```
+
+- *Type:* string
+
+The version string.
+
+---
+
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriverVersion.property.V1_3_2">V1_3_2</a></code> | <code><a href="#@pepperize/cdk-eks.EfsCsiDriverVersion">EfsCsiDriverVersion</a></code> | v1.3.2. |
+
+---
+
+##### `V1_3_2`<sup>Required</sup> <a name="V1_3_2" id="@pepperize/cdk-eks.EfsCsiDriverVersion.property.V1_3_2"></a>
+
+```typescript
+public readonly V1_3_2: EfsCsiDriverVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.EfsCsiDriverVersion">EfsCsiDriverVersion</a>
+
+v1.3.2.
+
+---
+
+### VpcCniVersion <a name="VpcCniVersion" id="@pepperize/cdk-eks.VpcCniVersion"></a>
+
+- *Implements:* <a href="#@pepperize/cdk-eks.IAddonVersion">IAddonVersion</a>
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCniVersion.of">of</a></code> | Specify a custom version. |
+
+---
+
+##### `of` <a name="of" id="@pepperize/cdk-eks.VpcCniVersion.of"></a>
+
+```typescript
+import { VpcCniVersion } from '@pepperize/cdk-eks'
+
+VpcCniVersion.of(version: string)
+```
+
+Specify a custom version.
+
+Use this if the version you need is not available in one of the predefined versions.
+
+###### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.VpcCniVersion.of.parameter.version"></a>
+
+- *Type:* string
+
+The version number.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCniVersion.property.custom">custom</a></code> | <code>boolean</code> | Whether it's a custom version. |
+| <code><a href="#@pepperize/cdk-eks.VpcCniVersion.property.version">version</a></code> | <code>string</code> | The version string. |
+
+---
+
+##### `custom`<sup>Required</sup> <a name="custom" id="@pepperize/cdk-eks.VpcCniVersion.property.custom"></a>
+
+```typescript
+public readonly custom: boolean;
+```
+
+- *Type:* boolean
+
+Whether it's a custom version.
+
+---
+
+##### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.VpcCniVersion.property.version"></a>
+
+```typescript
+public readonly version: string;
+```
+
+- *Type:* string
+
+The version string.
+
+---
+
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.VpcCniVersion.property.V1_10_1">V1_10_1</a></code> | <code><a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a></code> | v1.10.1. |
+| <code><a href="#@pepperize/cdk-eks.VpcCniVersion.property.V1_10_2">V1_10_2</a></code> | <code><a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a></code> | v1.10.2. |
+| <code><a href="#@pepperize/cdk-eks.VpcCniVersion.property.V1_10_3">V1_10_3</a></code> | <code><a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a></code> | v1.10.3. |
+
+---
+
+##### `V1_10_1`<sup>Required</sup> <a name="V1_10_1" id="@pepperize/cdk-eks.VpcCniVersion.property.V1_10_1"></a>
+
+```typescript
+public readonly V1_10_1: VpcCniVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a>
+
+v1.10.1.
+
+---
+
+##### `V1_10_2`<sup>Required</sup> <a name="V1_10_2" id="@pepperize/cdk-eks.VpcCniVersion.property.V1_10_2"></a>
+
+```typescript
+public readonly V1_10_2: VpcCniVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a>
+
+v1.10.2.
+
+---
+
+##### `V1_10_3`<sup>Required</sup> <a name="V1_10_3" id="@pepperize/cdk-eks.VpcCniVersion.property.V1_10_3"></a>
+
+```typescript
+public readonly V1_10_3: VpcCniVersion;
+```
+
+- *Type:* <a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a>
+
+v1.10.3.
+
+---
+
+## Protocols <a name="Protocols" id="Protocols"></a>
+
+### IAddonVersion <a name="IAddonVersion" id="@pepperize/cdk-eks.IAddonVersion"></a>
+
+- *Implemented By:* <a href="#@pepperize/cdk-eks.EbsCsiDriverVersion">EbsCsiDriverVersion</a>, <a href="#@pepperize/cdk-eks.VpcCniVersion">VpcCniVersion</a>, <a href="#@pepperize/cdk-eks.IAddonVersion">IAddonVersion</a>
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.IAddonVersion.property.version">version</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `version`<sup>Required</sup> <a name="version" id="@pepperize/cdk-eks.IAddonVersion.property.version"></a>
+
+```typescript
+public readonly version: string;
+```
+
+- *Type:* string
+
+---
+
+## Enums <a name="Enums" id="Enums"></a>
+
+### ResolveConflicts <a name="ResolveConflicts" id="@pepperize/cdk-eks.ResolveConflicts"></a>
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.ResolveConflicts.NONE">NONE</a></code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.ResolveConflicts.OVERWRITE">OVERWRITE</a></code> | *No description.* |
+
+---
+
+##### `NONE` <a name="NONE" id="@pepperize/cdk-eks.ResolveConflicts.NONE"></a>
+
+---
+
+
+##### `OVERWRITE` <a name="OVERWRITE" id="@pepperize/cdk-eks.ResolveConflicts.OVERWRITE"></a>
+
+---
 

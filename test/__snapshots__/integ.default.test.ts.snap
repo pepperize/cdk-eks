@@ -197,7 +197,7 @@ Object {
               "Arn",
             ],
           },
-          "version": "1.22",
+          "version": "1.21",
         },
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -1123,9 +1123,6 @@ Object {
       "Type": "AWS::IAM::Policy",
     },
     "ClusterEbsCsiDriverAddon741CB782": Object {
-      "DependsOn": Array [
-        "ClusterEbsCsiDriverServiceAccountRole99BBF22F",
-      ],
       "Properties": Object {
         "AddonName": "aws-ebs-csi-driver",
         "AddonVersion": "v1.5.2-eksbuild.1",
@@ -1135,14 +1132,14 @@ Object {
         "ResolveConflicts": "OVERWRITE",
         "ServiceAccountRoleArn": Object {
           "Fn::GetAtt": Array [
-            "ClusterEbsCsiDriverServiceAccountRole99BBF22F",
+            "ClusterEbsCsiDriverServiceAccountRoleC8E21372",
             "Arn",
           ],
         },
       },
       "Type": "AWS::EKS::Addon",
     },
-    "ClusterEbsCsiDriverCondition98837EDB": Object {
+    "ClusterEbsCsiDriverServiceAccountConditionJson9E2417B2": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
         "ServiceToken": Object {
@@ -1155,11 +1152,7 @@ Object {
           "Fn::Join": Array [
             "",
             Array [
-              "{\\"oidc.eks.",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ".amazonaws.com/id/",
+              "{\\"",
               Object {
                 "Fn::Select": Array [
                   1,
@@ -1173,11 +1166,7 @@ Object {
                   },
                 ],
               },
-              ":aud\\":\\"sts.amazonaws.com\\",\\"oidc.eks.",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ".amazonaws.com/id/",
+              ":aud\\":\\"sts.amazonaws.com\\",\\"",
               Object {
                 "Fn::Select": Array [
                   1,
@@ -1199,7 +1188,7 @@ Object {
       "Type": "Custom::AWSCDKCfnJson",
       "UpdateReplacePolicy": "Delete",
     },
-    "ClusterEbsCsiDriverServiceAccountRole99BBF22F": Object {
+    "ClusterEbsCsiDriverServiceAccountRoleC8E21372": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -1208,7 +1197,7 @@ Object {
               "Condition": Object {
                 "StringEquals": Object {
                   "Fn::GetAtt": Array [
-                    "ClusterEbsCsiDriverCondition98837EDB",
+                    "ClusterEbsCsiDriverServiceAccountConditionJson9E2417B2",
                     "Value",
                   ],
                 },
@@ -1239,6 +1228,47 @@ Object {
         ],
       },
       "Type": "AWS::IAM::Role",
+    },
+    "ClusterEbsCsiDriverServiceAccountmanifestServiceAccountServiceAccountResource62E1A369": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "ClusterKubectlReadyBarrier7A62DA2A",
+      ],
+      "Properties": Object {
+        "ClusterName": Object {
+          "Ref": "Cluster503F4F65",
+        },
+        "Manifest": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "[{\\"apiVersion\\":\\"v1\\",\\"kind\\":\\"ServiceAccount\\",\\"metadata\\":{\\"name\\":\\"ebs-csi-controller-sa\\",\\"namespace\\":\\"kube-system\\",\\"labels\\":{\\"aws.cdk.eks/prune-c8d159bc56235d64cdfeaf6871d59698c40a4e2cb8\\":\\"\\",\\"app.kubernetes.io/name\\":\\"ebs-csi-controller-sa\\"},\\"annotations\\":{\\"eks.amazonaws.com/role-arn\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "ClusterEbsCsiDriverServiceAccountRoleC8E21372",
+                  "Arn",
+                ],
+              },
+              "\\"}}}]",
+            ],
+          ],
+        },
+        "PruneLabel": "aws.cdk.eks/prune-c8d159bc56235d64cdfeaf6871d59698c40a4e2cb8",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ClusterCreationRoleC33A6617",
+            "Arn",
+          ],
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "awscdkawseksKubectlProviderNestedStackawscdkawseksKubectlProviderNestedStackResourceA7AEBA6B",
+            "Outputs.awscdkawseksKubectlProviderframeworkonEvent0A650005Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWSCDK-EKS-KubernetesResource",
+      "UpdateReplacePolicy": "Delete",
     },
     "ClusterEfsCsiDriverChart234E64D6": Object {
       "DeletionPolicy": "Delete",

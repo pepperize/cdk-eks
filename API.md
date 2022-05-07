@@ -112,6 +112,116 @@ public readonly serviceAccount: ServiceAccount;
 ---
 
 
+### AwsLoadBalancerController <a name="AwsLoadBalancerController" id="@pepperize/cdk-eks.AwsLoadBalancerController"></a>
+
+#### Initializers <a name="Initializers" id="@pepperize/cdk-eks.AwsLoadBalancerController.Initializer"></a>
+
+```typescript
+import { AwsLoadBalancerController } from '@pepperize/cdk-eks'
+
+new AwsLoadBalancerController(scope: Construct, id: string, props: AwsLoadBalancerControllerProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.Initializer.parameter.props">props</a></code> | <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerControllerProps">AwsLoadBalancerControllerProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@pepperize/cdk-eks.AwsLoadBalancerController.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@pepperize/cdk-eks.AwsLoadBalancerController.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@pepperize/cdk-eks.AwsLoadBalancerController.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@pepperize/cdk-eks.AwsLoadBalancerControllerProps">AwsLoadBalancerControllerProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@pepperize/cdk-eks.AwsLoadBalancerController.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.AwsLoadBalancerController.isConstruct"></a>
+
+```typescript
+import { AwsLoadBalancerController } from '@pepperize/cdk-eks'
+
+AwsLoadBalancerController.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.AwsLoadBalancerController.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_eks.ICluster</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@pepperize/cdk-eks.AwsLoadBalancerController.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `cluster`<sup>Required</sup> <a name="cluster" id="@pepperize/cdk-eks.AwsLoadBalancerController.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ICluster
+
+---
+
+
 ### CloudwatchMetrics <a name="CloudwatchMetrics" id="@pepperize/cdk-eks.CloudwatchMetrics"></a>
 
 Set up Container Insights to collect cluster metrics.
@@ -1221,6 +1331,57 @@ public readonly serviceAccountName: string;
 - *Type:* string
 
 The name of the service account for which to create a role.
+
+---
+
+### AwsLoadBalancerControllerProps <a name="AwsLoadBalancerControllerProps" id="@pepperize/cdk-eks.AwsLoadBalancerControllerProps"></a>
+
+#### Initializer <a name="Initializer" id="@pepperize/cdk-eks.AwsLoadBalancerControllerProps.Initializer"></a>
+
+```typescript
+import { AwsLoadBalancerControllerProps } from '@pepperize/cdk-eks'
+
+const awsLoadBalancerControllerProps: AwsLoadBalancerControllerProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerControllerProps.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_eks.ICluster</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerControllerProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerControllerProps.property.namespace">namespace</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `cluster`<sup>Required</sup> <a name="cluster" id="@pepperize/cdk-eks.AwsLoadBalancerControllerProps.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_eks.ICluster
+
+---
+
+##### `vpc`<sup>Required</sup> <a name="vpc" id="@pepperize/cdk-eks.AwsLoadBalancerControllerProps.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="@pepperize/cdk-eks.AwsLoadBalancerControllerProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* string
+- *Default:* ingress
 
 ---
 

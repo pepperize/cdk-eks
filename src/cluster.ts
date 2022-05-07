@@ -5,7 +5,7 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import * as kms from "aws-cdk-lib/aws-kms";
 import { Karpenter } from "cdk-karpenter";
 import { Construct } from "constructs";
-import {AwsLoadBalancerController} from "./aws-load-balancer-controller";
+import { AwsLoadBalancerController } from "./aws-load-balancer-controller";
 import { CloudwatchMetrics } from "./cloudwatch-metrics";
 import { EbsCsiDriver } from "./ebs-csi-driver";
 import { EfsCsiDriver } from "./efs-csi-driver";

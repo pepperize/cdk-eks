@@ -1406,9 +1406,9 @@ cdk-karpenter@^1.6.3:
     aws-cdk-lib "^2.23.0"
 
 cdk-nag@^2.12.31:
-  version "2.14.36"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.14.36.tgz#0bbb1ab2d95ffd428722e416cfb05d3df9366386"
-  integrity sha512-xfrggfiuE6hC2HeoNIcHHGsaZfF/dFi7ijLWdK5NOCTDlt6X79qktP3vUPgee3GIMhJB0jiuQ+lZx5+ZuZ4wjg==
+  version "2.14.37"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.14.37.tgz#c7db35c768a4bf35ef08b703099a347b42ca98c1"
+  integrity sha512-SxJ6IgTnmphF3+SaZdoB+yYIQKo9pjZIS9i55P9uwGo4/pHWlt1ngXlimTQg/OVWTpi48OzD9kta2Xn6gq19kA==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -4866,9 +4866,9 @@ prettier-linter-helpers@^1.0.0:
     fast-diff "^1.1.2"
 
 prettier@^2.6.2:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.0.tgz#a4fdae07e5596c51c9857ea676cd41a0163879d6"
-  integrity sha512-nwoX4GMFgxoPC6diHvSwmK/4yU8FFH3V8XWtLQrbj4IBsK2pkYhG4kf/ljF/haaZ/aii+wNJqISrCDPgxGWDVQ==
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
+  integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
 
 pretty-format@^27.0.0, pretty-format@^27.5.1:
   version "27.5.1"

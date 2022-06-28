@@ -1406,9 +1406,9 @@ cdk-karpenter@^1.6.3:
     aws-cdk-lib "^2.23.0"
 
 cdk-nag@^2.12.31:
-  version "2.14.45"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.14.45.tgz#4fbc91fe7cc3ac054f41fe9d8e6ce96e1495187d"
-  integrity sha512-kYk9al1Mh81qRI8725gnRpPT5n3tu8fH2bvLJH2kGs7d888DAt+yDiHhnUQfKSGb6fF2pqf7ra6rY8wbuGtbrg==
+  version "2.14.46"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.14.46.tgz#97ba929841ccb296b28bddaebe1e4bfcb364791e"
+  integrity sha512-gqzBMrOBN5Not2FH3A3v/7UkjEZRqFJWfAZUwZjAfwmdeSfBoGtDGDPsnCbaQWaeHtAY6brg01wDv7Z9kV4XUA==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -2215,9 +2215,9 @@ eslint-plugin-import@^2.26.0:
     tsconfig-paths "^3.14.1"
 
 eslint-plugin-prettier@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.0.0.tgz#8b99d1e4b8b24a762472b4567992023619cb98e0"
-  integrity sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.1.0.tgz#1cd4b3fadf3b3cdb30b1874b55e7f93f85eb43ad"
+  integrity sha512-A3AXIEfTnq3D5qDFjWJdQ9c4BLhw/TqhSR+6+SVaoPJBAWciFEuJiNQh275OnjRrAi7yssZzuWBRw66VG2g6UA==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 

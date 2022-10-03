@@ -1417,9 +1417,9 @@ case@1.6.3, case@^1.6.3:
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 cdk-karpenter@^1.6.3:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/cdk-karpenter/-/cdk-karpenter-1.8.1.tgz#df4845543cf2f26a201a4f2f271ffcf91396f636"
-  integrity sha512-UOl5RYK73pX6uZTeSy/oogIwl2qVcJ9XLotW8bTaFImctn6EtT1An753kNOuOQbrVYcW7833rCgXfU0d7kjIxQ==
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/cdk-karpenter/-/cdk-karpenter-1.9.0.tgz#8eb8d6bb0fb93491d93f1f04ac1fcbca9a7cb041"
+  integrity sha512-lavXhsggmGsGMia9DiiHd88EcLR3sBdqPg8MvMzAF932oeYI+8eYWeX+tOrK04GHauQN0Bbf6wr1G6hyJy3N/g==
   dependencies:
     aws-cdk-lib "^2.23.0"
 

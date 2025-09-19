@@ -1514,9 +1514,9 @@ cdk-karpenter@^1.6.3:
     aws-cdk-lib "^2.23.0"
 
 cdk-nag@^2.12.31:
-  version "2.28.104"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.28.104.tgz#98a32103201aa30ec9214db82cb1c7aa84f984d8"
-  integrity sha512-XiOe0P1d/XerPSUoB2KOAGWEha7THR5aS4t1hU09HKAyWt+CdsD+i8IVS3cWsuURC+saWWzNh0ucULxap3+bVQ==
+  version "2.37.31"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.37.31.tgz#094566c28fec878bb5861a8059be11d815efb25b"
+  integrity sha512-aFgeW2yKZagw7WA33xKmwc0LegoxbK4NCFn4GbCcOqG6htdIRut8COe8/IX68/lUHKQVhxS/X3FpLgW/lMvy7Q==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"

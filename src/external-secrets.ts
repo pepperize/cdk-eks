@@ -51,7 +51,7 @@ export class ExternalSecrets extends Construct {
           "secretsmanager:ListSecrets",
         ],
         resources: ["*"],
-      })
+      }),
     );
 
     // https://artifacthub.io/packages/helm/external-secrets-operator/external-secrets

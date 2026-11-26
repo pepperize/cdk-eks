@@ -4,6 +4,8 @@
 
 ### Addon <a name="Addon" id="@pepperize/cdk-eks.Addon"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.Addon.Initializer"></a>
 
 ```typescript
@@ -43,6 +45,7 @@ new Addon(scope: Construct, id: string, props: AddonProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.Addon.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.Addon.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -54,6 +57,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.Addon.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.Addon.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -62,7 +86,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.Addon.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.Addon.isConstruct"></a>
 
 ```typescript
 import { Addon } from '@pepperize/cdk-eks'
@@ -71,6 +95,20 @@ Addon.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.Addon.isConstruct.parameter.x"></a>
 
@@ -114,6 +152,8 @@ public readonly serviceAccount: ServiceAccount;
 
 ### AwsLoadBalancerController <a name="AwsLoadBalancerController" id="@pepperize/cdk-eks.AwsLoadBalancerController"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.AwsLoadBalancerController.Initializer"></a>
 
 ```typescript
@@ -153,6 +193,7 @@ new AwsLoadBalancerController(scope: Construct, id: string, props: AwsLoadBalanc
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -164,6 +205,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.AwsLoadBalancerController.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.AwsLoadBalancerController.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -172,7 +234,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.AwsLoadBalancerController.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.AwsLoadBalancerController.isConstruct"></a>
 
 ```typescript
 import { AwsLoadBalancerController } from '@pepperize/cdk-eks'
@@ -181,6 +243,20 @@ AwsLoadBalancerController.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.AwsLoadBalancerController.isConstruct.parameter.x"></a>
 
@@ -223,6 +299,8 @@ public readonly cluster: ICluster;
 
 
 ### CloudwatchMetrics <a name="CloudwatchMetrics" id="@pepperize/cdk-eks.CloudwatchMetrics"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 Set up Container Insights to collect cluster metrics.
 
@@ -267,6 +345,7 @@ new CloudwatchMetrics(scope: Construct, id: string, props: CloudwatchMetricsProp
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.CloudwatchMetrics.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.CloudwatchMetrics.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -278,6 +357,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.CloudwatchMetrics.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.CloudwatchMetrics.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -286,7 +386,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.CloudwatchMetrics.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.CloudwatchMetrics.isConstruct"></a>
 
 ```typescript
 import { CloudwatchMetrics } from '@pepperize/cdk-eks'
@@ -295,6 +395,20 @@ CloudwatchMetrics.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.CloudwatchMetrics.isConstruct.parameter.x"></a>
 
@@ -327,7 +441,7 @@ The tree node.
 
 ### Cluster <a name="Cluster" id="@pepperize/cdk-eks.Cluster"></a>
 
-- *Implements:* aws-cdk-lib.ITaggable
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.ITaggable
 
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.Cluster.Initializer"></a>
 
@@ -368,6 +482,7 @@ new Cluster(scope: Construct, id: string, props: ClusterProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.Cluster.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.Cluster.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -379,6 +494,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.Cluster.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.Cluster.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -387,7 +523,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.Cluster.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.Cluster.isConstruct"></a>
 
 ```typescript
 import { Cluster } from '@pepperize/cdk-eks'
@@ -396,6 +532,20 @@ Cluster.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.Cluster.isConstruct.parameter.x"></a>
 
@@ -410,7 +560,7 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.Cluster.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@pepperize/cdk-eks.Cluster.property.albController">albController</a></code> | <code>aws-cdk-lib.aws_eks.AlbController</code> | *No description.* |
+| <code><a href="#@pepperize/cdk-eks.Cluster.property.albController">albController</a></code> | <code><a href="#@pepperize/cdk-eks.AwsLoadBalancerController">AwsLoadBalancerController</a></code> | *No description.* |
 | <code><a href="#@pepperize/cdk-eks.Cluster.property.autoscaling">autoscaling</a></code> | <code>cdk-karpenter.Karpenter</code> | *No description.* |
 | <code><a href="#@pepperize/cdk-eks.Cluster.property.externalDns">externalDns</a></code> | <code><a href="#@pepperize/cdk-eks.ExternalDns">ExternalDns</a></code> | *No description.* |
 | <code><a href="#@pepperize/cdk-eks.Cluster.property.externalSecrets">externalSecrets</a></code> | <code><a href="#@pepperize/cdk-eks.ExternalSecrets">ExternalSecrets</a></code> | *No description.* |
@@ -437,10 +587,10 @@ The tree node.
 ##### `albController`<sup>Required</sup> <a name="albController" id="@pepperize/cdk-eks.Cluster.property.albController"></a>
 
 ```typescript
-public readonly albController: AlbController;
+public readonly albController: AwsLoadBalancerController;
 ```
 
-- *Type:* aws-cdk-lib.aws_eks.AlbController
+- *Type:* <a href="#@pepperize/cdk-eks.AwsLoadBalancerController">AwsLoadBalancerController</a>
 
 ---
 
@@ -529,6 +679,8 @@ TagManager to set, remove and format tags.
 
 ### EbsCsiDriver <a name="EbsCsiDriver" id="@pepperize/cdk-eks.EbsCsiDriver"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html.
 
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.EbsCsiDriver.Initializer"></a>
@@ -570,6 +722,7 @@ new EbsCsiDriver(scope: Construct, id: string, props: EbsCsiDriverProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.EbsCsiDriver.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -581,6 +734,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.EbsCsiDriver.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.EbsCsiDriver.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -590,7 +764,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.EbsCsiDriver.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.EbsCsiDriver.isConstruct"></a>
 
 ```typescript
 import { EbsCsiDriver } from '@pepperize/cdk-eks'
@@ -599,6 +773,20 @@ EbsCsiDriver.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.EbsCsiDriver.isConstruct.parameter.x"></a>
 
@@ -666,6 +854,8 @@ public readonly serviceAccount: ServiceAccount;
 
 ### EfsCsiDriver <a name="EfsCsiDriver" id="@pepperize/cdk-eks.EfsCsiDriver"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html#efs-install-driver.
 
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.EfsCsiDriver.Initializer"></a>
@@ -707,6 +897,7 @@ new EfsCsiDriver(scope: Construct, id: string, props: EfsCsiDriverProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.EfsCsiDriver.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -718,6 +909,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.EfsCsiDriver.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.EfsCsiDriver.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -727,7 +939,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.EfsCsiDriver.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.EfsCsiDriver.isConstruct"></a>
 
 ```typescript
 import { EfsCsiDriver } from '@pepperize/cdk-eks'
@@ -736,6 +948,20 @@ EfsCsiDriver.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.EfsCsiDriver.isConstruct.parameter.x"></a>
 
@@ -792,6 +1018,8 @@ The tree node.
 
 ### ExternalDns <a name="ExternalDns" id="@pepperize/cdk-eks.ExternalDns"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.ExternalDns.Initializer"></a>
 
 ```typescript
@@ -831,6 +1059,7 @@ new ExternalDns(scope: Construct, id: string, props: ExternalDnsProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.ExternalDns.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.ExternalDns.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -842,6 +1071,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.ExternalDns.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.ExternalDns.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -850,7 +1100,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.ExternalDns.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.ExternalDns.isConstruct"></a>
 
 ```typescript
 import { ExternalDns } from '@pepperize/cdk-eks'
@@ -859,6 +1109,20 @@ ExternalDns.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.ExternalDns.isConstruct.parameter.x"></a>
 
@@ -890,6 +1154,8 @@ The tree node.
 
 
 ### ExternalSecrets <a name="ExternalSecrets" id="@pepperize/cdk-eks.ExternalSecrets"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.ExternalSecrets.Initializer"></a>
 
@@ -930,6 +1196,7 @@ new ExternalSecrets(scope: Construct, id: string, props: ExternalSecretsProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.ExternalSecrets.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.ExternalSecrets.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -941,6 +1208,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.ExternalSecrets.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.ExternalSecrets.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -949,7 +1237,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.ExternalSecrets.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.ExternalSecrets.isConstruct"></a>
 
 ```typescript
 import { ExternalSecrets } from '@pepperize/cdk-eks'
@@ -958,6 +1246,20 @@ ExternalSecrets.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.ExternalSecrets.isConstruct.parameter.x"></a>
 
@@ -989,6 +1291,8 @@ The tree node.
 
 
 ### FluentBit <a name="FluentBit" id="@pepperize/cdk-eks.FluentBit"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 #### Initializers <a name="Initializers" id="@pepperize/cdk-eks.FluentBit.Initializer"></a>
 
@@ -1029,6 +1333,7 @@ new FluentBit(scope: Construct, id: string, props: FluentBitProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.FluentBit.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.FluentBit.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1040,6 +1345,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.FluentBit.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.FluentBit.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1048,7 +1374,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.FluentBit.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.FluentBit.isConstruct"></a>
 
 ```typescript
 import { FluentBit } from '@pepperize/cdk-eks'
@@ -1057,6 +1383,20 @@ FluentBit.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.FluentBit.isConstruct.parameter.x"></a>
 
@@ -1088,6 +1428,8 @@ The tree node.
 
 
 ### VpcCni <a name="VpcCni" id="@pepperize/cdk-eks.VpcCni"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 Amazon EKS supports native VPC networking with the Amazon VPC Container Network Interface (CNI) plugin for Kubernetes.
 
@@ -1134,6 +1476,7 @@ new VpcCni(scope: Construct, id: string, props: VpcCniProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@pepperize/cdk-eks.VpcCni.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@pepperize/cdk-eks.VpcCni.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1145,6 +1488,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="@pepperize/cdk-eks.VpcCni.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@pepperize/cdk-eks.VpcCni.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1154,7 +1518,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@pepperize/cdk-eks.VpcCni.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@pepperize/cdk-eks.VpcCni.isConstruct"></a>
 
 ```typescript
 import { VpcCni } from '@pepperize/cdk-eks'
@@ -1163,6 +1527,20 @@ VpcCni.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@pepperize/cdk-eks.VpcCni.isConstruct.parameter.x"></a>
 

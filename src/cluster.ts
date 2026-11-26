@@ -1,3 +1,4 @@
+import { KubectlLayer } from "@aws-cdk/lambda-layer-kubectl-v21";
 import { ITaggable, TagManager, TagType } from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as eks from "aws-cdk-lib/aws-eks";
@@ -27,7 +28,7 @@ export class Cluster extends Construct implements ITaggable {
   public readonly mainRole: iam.IRole;
   public readonly resource: eks.Cluster;
   public readonly autoscaling: Karpenter;
-  public readonly albController: eks.AlbController;
+  public readonly albController: AwsLoadBalancerController;
   public readonly externalDns: ExternalDns;
   public readonly externalSecrets: ExternalSecrets;
   public readonly logging: FluentBit;
@@ -45,6 +46,7 @@ export class Cluster extends Construct implements ITaggable {
       mastersRole: this.mainRole,
       clusterName: props.clusterName ?? "Cluster",
       version: eks.KubernetesVersion.V1_21,
+      kubectlLayer: new KubectlLayer(this, "KubectlLayer"),
       secretsEncryptionKey: props.secretsEncryptionKey,
       defaultCapacityInstance: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
       tags: this.tags.renderedTags as unknown as { [key: string]: string },

@@ -30,7 +30,7 @@ export class EfsCsiDriverVersion {
     /**
      * Whether it's a custom version.
      */
-    public readonly custom: boolean
+    public readonly custom: boolean,
   ) {}
 }
 

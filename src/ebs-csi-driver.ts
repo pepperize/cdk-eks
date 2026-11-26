@@ -29,7 +29,7 @@ export class EbsCsiDriverVersion implements IAddonVersion {
     /**
      * Whether it's a custom version.
      */
-    public readonly custom: boolean
+    public readonly custom: boolean,
   ) {}
 }
 

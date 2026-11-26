@@ -48,13 +48,13 @@ export class ExternalDns extends Construct {
         resources: props.hostedZoneIds.map((hostedZoneId) => {
           return `arn:aws:route53:::hostedzone/${hostedZoneId}`;
         }),
-      })
+      }),
     );
     serviceAccount.addToPrincipalPolicy(
       new iam.PolicyStatement({
         actions: ["route53:ListHostedZones"],
         resources: ["*"],
-      })
+      }),
     );
 
     const chart = new eks.HelmChart(this, "Chart", {

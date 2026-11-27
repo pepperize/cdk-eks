@@ -19,7 +19,7 @@ const project = new AwsCdkConstructLibrary({
   packageManager: javascript.NodePackageManager.YARN_CLASSIC,
 
   peerDeps: ["cdk-karpenter@^1.9.0", "@aws-cdk/lambda-layer-kubectl-v21@^2.0.0"],
-  devDeps: ["@pepperize/projen-awscdk-construct@~0.1.1", "@types/node@^22", "typescript@~6.0", "cdk-nag@^2"],
+  devDeps: ["@pepperize/projen-awscdk-construct@~0.1.2", "@types/node@^22", "typescript@~6.0", "cdk-nag@^2"],
 
   gitpod: true,
 });
